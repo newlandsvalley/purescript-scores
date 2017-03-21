@@ -13,7 +13,7 @@ import Data.Abc
         , Thickness(..)
         , Repeat(..)
         )
-import VexTab.Abc.Score
+import VexTab.Abc.VexScore
 
 data NoteContext
     = Staved

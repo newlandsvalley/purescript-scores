@@ -13,7 +13,7 @@ import Data.Abc
 import Data.Abc.Canonical as AbcText
 import Data.Abc.Parser (parse, PositionedParseError(..))
 import Data.Abc.Notation (getKeySig, getMeter, getUnitNoteLength, dotFactor, normaliseModalKey)
-import VexTab.Abc.Score (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote)
+import VexTab.Abc.VexScore (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote)
 
 type Context =
     { modifiedKeySig :: ModifiedKeySignature
