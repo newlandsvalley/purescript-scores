@@ -2,6 +2,7 @@
   "name": "keyboard",
   "private": true,
   "dependencies": {
-    "purescript-scores": "../../../purescript-scores"
+    "purescript-scores": "../../../purescript-scores",
+    "purescript-console": "^2.0.0"
   }
 }
