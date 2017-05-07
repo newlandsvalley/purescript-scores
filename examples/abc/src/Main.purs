@@ -3,7 +3,7 @@ module Main where
 import VexTab.Score
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log, logShow)
-import Prelude (Unit, bind, (<>), ($))
+import Prelude (Unit, bind, discard, (<>), ($))
 import VexTab.Abc.Score (renderParsedAbc)
 import Data.Abc.Parser (parse)
 
