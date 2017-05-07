@@ -1,6 +1,6 @@
 module VexTab.Abc.VexScore  where
 
-import Prelude (class Show, show)
+import Prelude (class Show)
 import Data.List (List)
 import Data.Maybe (Maybe)
 import Data.Abc

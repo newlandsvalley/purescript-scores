@@ -3,6 +3,6 @@
   "private": true,
   "dependencies": {
     "purescript-scores": "../../../purescript-scores",
-    "purescript-console": "^2.0.0"
+    "purescript-console": "^3.0.0"
   }
 }
