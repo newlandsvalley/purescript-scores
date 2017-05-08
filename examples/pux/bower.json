@@ -1,0 +1,8 @@
+{
+  "name": "pux",
+  "private": true,
+  "dependencies": {
+    "purescript-scores": "../../../purescript-scores",
+    "purescript-pux": "^9.1.0"
+  }
+}

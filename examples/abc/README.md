@@ -11,4 +11,4 @@ From the current directory
     $ bower install
     $ ./build.sh
 
-The code is built as example.js in the keyboard/dist directory. This is runnable if you open the corresponding index.html.
+The code is built as example.js in the abc/dist directory. This is runnable if you open the corresponding index.html.
