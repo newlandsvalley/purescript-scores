@@ -217,13 +217,13 @@ vexBar b =
         _ ->
          " =||"
 
-headerAccidental :: Maybe Accidental -> String
-headerAccidental ma =
-  case ma of
-    Just Sharp ->
+headerAccidental :: Accidental -> String
+headerAccidental a =
+  case a of
+    Sharp ->
       "#"
 
-    Just Flat ->
+    Flat ->
       "b"
 
     _ ->

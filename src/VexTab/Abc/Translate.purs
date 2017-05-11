@@ -410,7 +410,7 @@ initialContext :: AbcTune -> Context
 initialContext t =
   let
     keySig =
-      fromMaybe { keySignature : { pitchClass : C, accidental : Nothing, mode : Major }, modifications : Nil }
+      fromMaybe { keySignature : { pitchClass : C, accidental : Natural, mode : Major }, modifications : Nil }
         $ getKeySig t
 
     meter =
