@@ -13,7 +13,7 @@ import Data.Abc
 import Data.Abc.Canonical as AbcText
 import Data.Abc.Parser (parse, PositionedParseError(..))
 import Data.Abc.Notation (getKeySig, getMeter, getUnitNoteLength, dotFactor, normaliseModalKey)
-import VexTab.Abc.VexScore (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote)
+import VexTab.Abc.VexScore (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote, VexRest, VexRestOrNote)
 
 type Context =
     { modifiedKeySig :: ModifiedKeySignature
@@ -140,22 +140,13 @@ music ctx m =
     Note abcNote ->
       map (\(Tuple vn c ) -> (Tuple (VNote vn) c )) (note ctx abcNote)
 
-    Rest duration ->
-      let
-        noteDurResult =
-          noteDur ctx duration
-      in
-        case noteDurResult of
-          Right d ->
-            Right (Tuple (VRest d) ctx )
-
-          Left e ->
-            Left ("Rest " <> e <> ": " <> ("rest"))
+    Rest abcRest ->
+      map (\(Tuple vn c ) -> (Tuple (VRest vn) c )) (rest ctx abcRest)
 
     Tuplet tupletSignature notes ->
       let
         notesResult =
-          noteList ctx notes
+          restOrNoteList ctx notes
       in
         case notesResult of
           Right (Tuple vnotes _ ) ->
@@ -232,14 +223,18 @@ music ctx m =
     _ ->
       Right (Tuple VIgnore ctx )
 
+rest :: Context -> AbcRest -> Either String (Tuple VexRest Context )
+rest ctx abcRest =
+  case (noteDur ctx abcRest.duration) of
+    Right d ->
+      Right (Tuple { duration :d }  ctx )
+
+    Left e ->
+      Left ("Rest " <> e <> ": " <> ("rest"))
 
 note :: Context -> AbcNote -> Either String (Tuple VexNote Context )
 note ctx abcNote =
-  let
-    noteDurResult =
-      noteDur ctx abcNote.duration
-  in
-    case noteDurResult of
+  case (noteDur ctx abcNote.duration) of
       Right d ->
         let
           vexNote =
@@ -267,7 +262,19 @@ note ctx abcNote =
       Left e ->
         Left ("Note " <> e <> ": " <> (AbcText.abcNote abcNote))
 
-
+-- | tuplets can now contain rests as well as noted
+restOrNote :: Context -> RestOrNote -> Either String (Tuple VexRestOrNote Context )
+restOrNote ctx rn =
+  -- bimap (rest ctx rn) (note ctx rn)
+  case rn of
+    Left r ->
+      case (rest ctx r) of
+        Left err -> Left err
+        Right (Tuple vrest ctx1) -> Right (Tuple (Left vrest) ctx1)
+    Right n ->
+      case (note ctx n) of
+        Left err -> Left err
+        Right (Tuple vnote ctx1) -> Right (Tuple (Right vnote) ctx1)
 
 {- translate a note or rest duration, wrapping in a Result which indicates an
    unsupported duration.  This rounds values of 'short enough' note durations
@@ -364,6 +371,10 @@ makeBroken broken n1 n2 =
 noteList :: Context -> List AbcNote -> Either String (Tuple (List VexNote) Context )
 noteList ctx notes =
   foldOverResult ctx notes note
+
+restOrNoteList :: Context -> List RestOrNote -> Either String (Tuple (List VexRestOrNote) Context )
+restOrNoteList ctx restOrNotes =
+  foldOverResult ctx restOrNotes restOrNote
 
 {- cater for a new header inside the tune body after a line has completed
    we need to cater for changes in key signature, meter or unit note length

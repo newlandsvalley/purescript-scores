@@ -4,6 +4,7 @@ module VexTab.Abc.Canonical
 import Prelude (($), (<>), (>), map, show)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.List (List, foldl, intercalate, length)
+import Data.Either (Either(..))
 import Data.Tuple (fst, snd)
 import Data.Foldable (foldMap)
 import Data.Abc
@@ -106,6 +107,8 @@ vexItem vi =
       vexNote Staved vnote
 
     VRest duration ->
+      vexRest duration
+      {-
       let
         dur =
           show duration
@@ -114,10 +117,12 @@ vexItem vi =
           "##"
       in
         nicelySpace [ "", dur, rest ]
+      -}
 
     VTuplet size vnotes ->
         " "
-          <> (intercalate " " $ map (vexNote Tupleted) vnotes)
+          -- <> (intercalate " " $ map (vexNote Tupleted) vnotes)
+          <> (intercalate " " $ map vexRestOrNote vnotes)
           <> " ^"
           <> show size
           <> ","
@@ -141,6 +146,18 @@ vexItem vi =
 
     VIgnore ->
       ""
+
+vexRest :: VexRest -> String
+vexRest r =
+  let
+    dur =
+      show r.duration
+
+    rest =
+      "##"
+  in
+    nicelySpace [ "", dur, rest ]
+
 
 vexNote :: NoteContext -> VexNote -> String
 vexNote ctx vnote =
@@ -178,6 +195,15 @@ vexNote ctx vnote =
           nicelySpace [ "", dur, tie, pitch ] <> decor
         else
           nicelySpace [ "", dur, pitch ] <> decor
+
+vexRestOrNote :: VexRestOrNote -> String
+vexRestOrNote vrn =
+  case vrn of
+    Left r ->
+      vexRest r
+    Right n ->
+      vexNote Tupleted n
+
 
 accidental :: Accidental -> String
 accidental a =

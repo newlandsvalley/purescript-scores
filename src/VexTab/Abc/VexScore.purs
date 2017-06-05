@@ -2,6 +2,7 @@ module VexTab.Abc.VexScore  where
 
 import Prelude (class Show)
 import Data.List (List)
+import Data.Either (Either)
 import Data.Maybe (Maybe)
 import Data.Abc
         ( KeySignature
@@ -30,9 +31,9 @@ type VexLine =
 -- | an item that can occur within a stave.
 data VexItem
   = VNote VexNote
-  | VRest VexDuration
+  | VRest VexRest
   | VBar Bar
-  | VTuplet Int (List VexNote)
+  | VTuplet Int (List VexRestOrNote)
   | VChord VexDuration (List VexNote)
   | VNotePair VexNote VexNote
   | VIgnore
@@ -93,3 +94,11 @@ type VexNote =
   , tied :: Boolean               -- to the next note
   , decoration ::  Maybe String   -- is the note decorated (staccato etc)
   }
+
+-- | a rest.
+type VexRest =
+  { duration :: VexDuration }
+
+-- | a rest or a note
+type VexRestOrNote =
+  Either VexRest VexNote
