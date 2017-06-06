@@ -13,20 +13,16 @@ import Test.Unit.Assert as Assert
 
 assertCanonical :: forall e. String -> String -> Test e
 assertCanonical s canonical =
-  let
-    parseResult =
-      parse s
-  in
-    case parseResult of
-      Right tune ->
-        case (translate tune) of
-          Left err ->
-            failure ("translation failed: " <> (show err))
-          Right score ->
-            Assert.equal canonical (toScoreText score)
+  case (parse s) of
+    Right tune ->
+      case (translate tune) of
+        Left err ->
+          failure ("translation failed: " <> (show err))
+        Right score ->
+          Assert.equal canonical (toScoreText score)
 
-      Left err ->
-        failure ("parse failed: " <> (show err))
+    Left err ->
+      failure ("parse failed: " <> (show err))
 
 translateSuite :: forall t. Free (TestF t) Unit
 translateSuite =
@@ -49,13 +45,25 @@ translateSuite =
     test "broken rhythm <" do
       assertCanonical "K:C\r\n| d<e |\r\n"
          ((preface "C" ) <> " notes | :16 D/5 :8d E/5 |\r\n" )
+    test "sharp note" do
+       assertCanonical "K:D\r\n| A^Bc |\r\n"
+         ((preface "D" ) <> " notes | :8 A/4 :8 B#/4 :8 C/5 |\r\n" )
+    test "flat note" do
+       assertCanonical "K:Bb\r\n| A_Bc |\r\n"
+         ((preface "Bb" ) <> " notes | :8 A/4 :8 B@/4 :8 C/5 |\r\n" )
+    test "natural note" do
+       assertCanonical "K:D\r\n| AB=c |\r\n"
+         ((preface "D" ) <> " notes | :8 A/4 :8 B/4 :8 Cn/5 |\r\n" )
+    test "tie" do
+       assertCanonical "K:C\r\n| AB-B4 |\r\n"
+          ((preface "C" ) <> " notes | :8 A/4 :8 B/4 :h T B/4 |\r\n" )
     test "two lines" do
       assertCanonical "K:C\r\n| ABc |\r\n| def |\r\n"
-       ((preface "C" )
-         <> " notes | :8 A/4 :8 B/4 :8 C/5 |\r\n"
-         <> (stave "C")
-         <> " notes | :8 D/5 :8 E/5 :8 F/5 |\r\n"
-       )
+         ((preface "C" )
+           <> " notes | :8 A/4 :8 B/4 :8 C/5 |\r\n"
+           <> (stave "C")
+           <> " notes | :8 D/5 :8 E/5 :8 F/5 |\r\n"
+         )
     -- more to follow
 
 preface :: String -> String

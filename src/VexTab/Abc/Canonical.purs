@@ -108,20 +108,9 @@ vexItem vi =
 
     VRest duration ->
       vexRest duration
-      {-
-      let
-        dur =
-          show duration
-
-        rest =
-          "##"
-      in
-        nicelySpace [ "", dur, rest ]
-      -}
 
     VTuplet size vnotes ->
         " "
-          -- <> (intercalate " " $ map (vexNote Tupleted) vnotes)
           <> (intercalate " " $ map vexRestOrNote vnotes)
           <> " ^"
           <> show size
@@ -203,7 +192,6 @@ vexRestOrNote vrn =
       vexRest r
     Right n ->
       vexNote Tupleted n
-
 
 accidental :: Accidental -> String
 accidental a =

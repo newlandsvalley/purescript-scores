@@ -1109,6 +1109,7 @@ var PS = {};
   var Control_Alt = PS["Control.Alt"];
   var Control_Applicative = PS["Control.Applicative"];
   var Control_Apply = PS["Control.Apply"];
+  var Control_Bind = PS["Control.Bind"];
   var Control_Category = PS["Control.Category"];
   var Control_Plus = PS["Control.Plus"];
   var Control_Semigroupoid = PS["Control.Semigroupoid"];
@@ -1329,6 +1330,7 @@ var PS = {};
   "use strict";
   var Control_Applicative = PS["Control.Applicative"];
   var Control_Bind = PS["Control.Bind"];
+  var Control_Monad = PS["Control.Monad"];
   var Control_Monad_Eff = PS["Control.Monad.Eff"];
   var Control_Monad_Eff_Unsafe = PS["Control.Monad.Eff.Unsafe"];
   var Control_Monad_ST = PS["Control.Monad.ST"];
@@ -1337,6 +1339,7 @@ var PS = {};
   var Data_Either = PS["Data.Either"];
   var Data_Functor = PS["Data.Functor"];
   var Data_Identity = PS["Data.Identity"];
+  var Data_Maybe = PS["Data.Maybe"];
   var Data_Unit = PS["Data.Unit"];
   var Partial_Unsafe = PS["Partial.Unsafe"];
   var Prelude = PS["Prelude"];        
@@ -1378,15 +1381,15 @@ var PS = {};
                   __tco_done = true;
                   return v.value0;
               };
-              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 93, column 13 - line 96, column 18: " + [ v.constructor.name ]);
+              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 94, column 13 - line 97, column 18: " + [ v.constructor.name ]);
           };
           while (!__tco_done) {
               __tco_result = __tco_loop(__copy_v);
           };
           return __tco_result;
       };
-      return function ($47) {
-          return go(f($47));
+      return function ($53) {
+          return go(f($53));
       };
   }; 
   var monadRecEither = new MonadRec(function () {
@@ -1403,7 +1406,7 @@ var PS = {};
               if (v instanceof Data_Either.Right && v.value0 instanceof Done) {
                   return new Done(new Data_Either.Right(v.value0.value0));
               };
-              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 108, column 7 - line 108, column 33: " + [ v.constructor.name ]);
+              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 112, column 7 - line 112, column 33: " + [ v.constructor.name ]);
           };
           return tailRec(g)(f(a0));
       };
@@ -1417,7 +1420,7 @@ var PS = {};
               if (v2 instanceof Done) {
                   return new Done(v1(v2.value0));
               };
-              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 32, column 3 - line 32, column 34: " + [ v.constructor.name, v1.constructor.name, v2.constructor.name ]);
+              throw new Error("Failed pattern match at Control.Monad.Rec.Class line 33, column 3 - line 33, column 34: " + [ v.constructor.name, v1.constructor.name, v2.constructor.name ]);
           };
       };
   });
@@ -1448,6 +1451,7 @@ var PS = {};
   var Data_BooleanAlgebra = PS["Data.BooleanAlgebra"];
   var Data_Bounded = PS["Data.Bounded"];
   var Data_CommutativeRing = PS["Data.CommutativeRing"];
+  var Data_Distributive = PS["Data.Distributive"];
   var Data_Eq = PS["Data.Eq"];
   var Data_Foldable = PS["Data.Foldable"];
   var Data_Function = PS["Data.Function"];
@@ -1466,7 +1470,8 @@ var PS = {};
   var Data_Show = PS["Data.Show"];
   var Data_Traversable = PS["Data.Traversable"];
   var Data_Unit = PS["Data.Unit"];
-  var Prelude = PS["Prelude"];        
+  var Prelude = PS["Prelude"];
+  var Type_Equality = PS["Type.Equality"];        
   var Tuple = (function () {
       function Tuple(value0, value1) {
           this.value0 = value0;
@@ -1663,12 +1668,14 @@ var PS = {};
   var Data_HeytingAlgebra = PS["Data.HeytingAlgebra"];
   var Data_List_Types = PS["Data.List.Types"];
   var Data_Maybe = PS["Data.Maybe"];
+  var Data_Newtype = PS["Data.Newtype"];
   var Data_NonEmpty = PS["Data.NonEmpty"];
   var Data_Ord = PS["Data.Ord"];
   var Data_Ordering = PS["Data.Ordering"];
   var Data_Ring = PS["Data.Ring"];
   var Data_Semigroup = PS["Data.Semigroup"];
   var Data_Semiring = PS["Data.Semiring"];
+  var Data_Show = PS["Data.Show"];
   var Data_Traversable = PS["Data.Traversable"];
   var Data_Tuple = PS["Data.Tuple"];
   var Data_Unfoldable = PS["Data.Unfoldable"];
@@ -1693,7 +1700,7 @@ var PS = {};
                       __copy_v = v.value1;
                       return;
                   };
-                  throw new Error("Failed pattern match at Data.List line 359, column 11 - line 362, column 36: " + [ acc.constructor.name, v.constructor.name ]);
+                  throw new Error("Failed pattern match at Data.List line 363, column 11 - line 366, column 36: " + [ acc.constructor.name, v.constructor.name ]);
               };
               while (!__tco_done) {
                   __tco_result = __tco_loop(__tco_acc, __copy_v);
@@ -1749,7 +1756,7 @@ var PS = {};
                   __copy_v1 = v1 - 1 | 0;
                   return;
               };
-              throw new Error("Failed pattern match at Data.List line 275, column 1 - line 275, column 22: " + [ v.constructor.name, v1.constructor.name ]);
+              throw new Error("Failed pattern match at Data.List line 279, column 1 - line 279, column 22: " + [ v.constructor.name, v1.constructor.name ]);
           };
           while (!__tco_done) {
               __tco_result = __tco_loop(__tco_v, __copy_v1);
@@ -1764,7 +1771,7 @@ var PS = {};
       if (v instanceof Data_List_Types.Cons) {
           return new Data_Maybe.Just(v.value0);
       };
-      throw new Error("Failed pattern match at Data.List line 224, column 1 - line 224, column 19: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at Data.List line 228, column 1 - line 228, column 19: " + [ v.constructor.name ]);
   };
   var findIndex = function (fn) {
       var go = function (__copy_v) {
@@ -1788,7 +1795,7 @@ var PS = {};
                       __tco_done = true;
                       return Data_Maybe.Nothing.value;
                   };
-                  throw new Error("Failed pattern match at Data.List line 295, column 3 - line 296, column 44: " + [ v.constructor.name, v1.constructor.name ]);
+                  throw new Error("Failed pattern match at Data.List line 299, column 3 - line 300, column 44: " + [ v.constructor.name, v1.constructor.name ]);
               };
               while (!__tco_done) {
                   __tco_result = __tco_loop(__tco_v, __copy_v1);
@@ -2046,6 +2053,7 @@ var PS = {};
 (function(exports) {
   // Generated by purs version 0.11.4
   "use strict";
+  var Data_Either = PS["Data.Either"];
   var Data_Eq = PS["Data.Eq"];
   var Data_Generic = PS["Data.Generic"];
   var Data_HeytingAlgebra = PS["Data.HeytingAlgebra"];
@@ -2765,7 +2773,7 @@ var PS = {};
       if (v instanceof G) {
           return "G";
       };
-      throw new Error("Failed pattern match at Data.Abc line 204, column 3 - line 205, column 3: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at Data.Abc line 215, column 3 - line 216, column 3: " + [ v.constructor.name ]);
   });
   var showAccidental = new Data_Show.Show(function (v) {
       if (v instanceof Sharp) {
@@ -2783,7 +2791,7 @@ var PS = {};
       if (v instanceof Natural) {
           return "=";
       };
-      throw new Error("Failed pattern match at Data.Abc line 183, column 5 - line 184, column 5: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at Data.Abc line 194, column 5 - line 195, column 5: " + [ v.constructor.name ]);
   });
   var newtypeKeyAccidental = new Data_Newtype.Newtype(function (n) {
       return n;
@@ -3152,7 +3160,10 @@ var PS = {};
   var Data_Foldable = PS["Data.Foldable"];
   var Data_Function = PS["Data.Function"];
   var Data_Functor = PS["Data.Functor"];
+  var Data_HeytingAlgebra = PS["Data.HeytingAlgebra"];
   var Data_List = PS["Data.List"];
+  var Data_List_Lazy = PS["Data.List.Lazy"];
+  var Data_List_Lazy_Types = PS["Data.List.Lazy.Types"];
   var Data_List_Types = PS["Data.List.Types"];
   var Data_Maybe = PS["Data.Maybe"];
   var Data_Monoid = PS["Data.Monoid"];
@@ -3340,47 +3351,58 @@ var PS = {};
   })();
   var lookup = function (dictOrd) {
       return function (k) {
-          return function (tree) {
-              if (tree instanceof Leaf) {
-                  return Data_Maybe.Nothing.value;
-              };
-              var comp = Data_Ord.compare(dictOrd);
-              var __unused = function (dictPartial1) {
-                  return function ($dollar45) {
-                      return $dollar45;
+          var comp = Data_Ord.compare(dictOrd);
+          var go = function (__copy_v) {
+              var __tco_done = false;
+              var __tco_result;
+              function __tco_loop(v) {
+                  if (v instanceof Leaf) {
+                      __tco_done = true;
+                      return Data_Maybe.Nothing.value;
                   };
-              };
-              return __unused()((function () {
-                  if (tree instanceof Two) {
-                      var v1 = comp(k)(tree.value1);
-                      if (v1 instanceof Data_Ordering.EQ) {
-                          return new Data_Maybe.Just(tree.value2);
+                  if (v instanceof Two) {
+                      var v2 = comp(k)(v.value1);
+                      if (v2 instanceof Data_Ordering.EQ) {
+                          __tco_done = true;
+                          return new Data_Maybe.Just(v.value2);
                       };
-                      if (v1 instanceof Data_Ordering.LT) {
-                          return lookup(dictOrd)(k)(tree.value0);
+                      if (v2 instanceof Data_Ordering.LT) {
+                          __copy_v = v.value0;
+                          return;
                       };
-                      return lookup(dictOrd)(k)(tree.value3);
+                      __copy_v = v.value3;
+                      return;
                   };
-                  if (tree instanceof Three) {
-                      var v = comp(k)(tree.value1);
-                      if (v instanceof Data_Ordering.EQ) {
-                          return new Data_Maybe.Just(tree.value2);
-                      };
-                      var v3 = comp(k)(tree.value4);
+                  if (v instanceof Three) {
+                      var v3 = comp(k)(v.value1);
                       if (v3 instanceof Data_Ordering.EQ) {
-                          return new Data_Maybe.Just(tree.value5);
+                          __tco_done = true;
+                          return new Data_Maybe.Just(v.value2);
                       };
-                      if (v instanceof Data_Ordering.LT) {
-                          return lookup(dictOrd)(k)(tree.value0);
+                      var v4 = comp(k)(v.value4);
+                      if (v4 instanceof Data_Ordering.EQ) {
+                          __tco_done = true;
+                          return new Data_Maybe.Just(v.value5);
                       };
-                      if (v3 instanceof Data_Ordering.GT) {
-                          return lookup(dictOrd)(k)(tree.value6);
+                      if (v3 instanceof Data_Ordering.LT) {
+                          __copy_v = v.value0;
+                          return;
                       };
-                      return lookup(dictOrd)(k)(tree.value3);
+                      if (v4 instanceof Data_Ordering.GT) {
+                          __copy_v = v.value6;
+                          return;
+                      };
+                      __copy_v = v.value3;
+                      return;
                   };
-                  throw new Error("Failed pattern match at Data.Map line 156, column 10 - line 170, column 39: " + [ tree.constructor.name ]);
-              })());
+                  throw new Error("Failed pattern match at Data.Map line 155, column 12 - line 174, column 29: " + [ v.constructor.name ]);
+              };
+              while (!__tco_done) {
+                  __tco_result = __tco_loop(__copy_v);
+              };
+              return __tco_result;
           };
+          return go;
       };
   }; 
   var fromZipper = function (__copy_dictOrd) {
@@ -3426,9 +3448,9 @@ var PS = {};
                           __copy_tree = new Three(v.value0.value0, v.value0.value1, v.value0.value2, v.value0.value3, v.value0.value4, v.value0.value5, tree);
                           return;
                       };
-                      throw new Error("Failed pattern match at Data.Map line 247, column 3 - line 252, column 88: " + [ v.value0.constructor.name ]);
+                      throw new Error("Failed pattern match at Data.Map line 271, column 3 - line 276, column 88: " + [ v.value0.constructor.name ]);
                   };
-                  throw new Error("Failed pattern match at Data.Map line 245, column 1 - line 245, column 27: " + [ v.constructor.name, tree.constructor.name ]);
+                  throw new Error("Failed pattern match at Data.Map line 269, column 1 - line 269, column 27: " + [ v.constructor.name, tree.constructor.name ]);
               };
               while (!__tco_done) {
                   __tco_result = __tco_loop(__tco_dictOrd, __tco_v, __copy_tree);
@@ -3438,81 +3460,75 @@ var PS = {};
       };
   };
   var insert = function (dictOrd) {
-      var up = function (__copy_v) {
-          return function (__copy_v1) {
-              var __tco_v = __copy_v;
-              var __tco_done = false;
-              var __tco_result;
-              function __tco_loop(v, v1) {
-                  if (v instanceof Data_List_Types.Nil) {
-                      __tco_done = true;
-                      return new Two(v1.value0, v1.value1, v1.value2, v1.value3);
-                  };
-                  if (v instanceof Data_List_Types.Cons) {
-                      if (v.value0 instanceof TwoLeft) {
-                          __tco_done = true;
-                          return fromZipper(dictOrd)(v.value1)(new Three(v1.value0, v1.value1, v1.value2, v1.value3, v.value0.value0, v.value0.value1, v.value0.value2));
-                      };
-                      if (v.value0 instanceof TwoRight) {
-                          __tco_done = true;
-                          return fromZipper(dictOrd)(v.value1)(new Three(v.value0.value0, v.value0.value1, v.value0.value2, v1.value0, v1.value1, v1.value2, v1.value3));
-                      };
-                      if (v.value0 instanceof ThreeLeft) {
-                          __tco_v = v.value1;
-                          __copy_v1 = new KickUp(new Two(v1.value0, v1.value1, v1.value2, v1.value3), v.value0.value0, v.value0.value1, new Two(v.value0.value2, v.value0.value3, v.value0.value4, v.value0.value5));
-                          return;
-                      };
-                      if (v.value0 instanceof ThreeMiddle) {
-                          __tco_v = v.value1;
-                          __copy_v1 = new KickUp(new Two(v.value0.value0, v.value0.value1, v.value0.value2, v1.value0), v1.value1, v1.value2, new Two(v1.value3, v.value0.value3, v.value0.value4, v.value0.value5));
-                          return;
-                      };
-                      if (v.value0 instanceof ThreeRight) {
-                          __tco_v = v.value1;
-                          __copy_v1 = new KickUp(new Two(v.value0.value0, v.value0.value1, v.value0.value2, v.value0.value3), v.value0.value4, v.value0.value5, new Two(v1.value0, v1.value1, v1.value2, v1.value3));
-                          return;
-                      };
-                      throw new Error("Failed pattern match at Data.Map line 283, column 5 - line 288, column 104: " + [ v.value0.constructor.name, v1.constructor.name ]);
-                  };
-                  throw new Error("Failed pattern match at Data.Map line 281, column 3 - line 281, column 54: " + [ v.constructor.name, v1.constructor.name ]);
-              };
-              while (!__tco_done) {
-                  __tco_result = __tco_loop(__tco_v, __copy_v1);
-              };
-              return __tco_result;
-          };
-      };
-      var comp = Data_Ord.compare(dictOrd);
-      var down = function (__copy_ctx) {
-          return function (__copy_k) {
-              return function (__copy_v) {
-                  return function (__copy_v1) {
-                      var __tco_ctx = __copy_ctx;
-                      var __tco_k = __copy_k;
-                      var __tco_v = __copy_v;
+      return function (k) {
+          return function (v) {
+              var up = function (__copy_v1) {
+                  return function (__copy_v2) {
+                      var __tco_v1 = __copy_v1;
                       var __tco_done = false;
                       var __tco_result;
-                      function __tco_loop(ctx, k, v, v1) {
+                      function __tco_loop(v1, v2) {
+                          if (v1 instanceof Data_List_Types.Nil) {
+                              __tco_done = true;
+                              return new Two(v2.value0, v2.value1, v2.value2, v2.value3);
+                          };
+                          if (v1 instanceof Data_List_Types.Cons) {
+                              if (v1.value0 instanceof TwoLeft) {
+                                  __tco_done = true;
+                                  return fromZipper(dictOrd)(v1.value1)(new Three(v2.value0, v2.value1, v2.value2, v2.value3, v1.value0.value0, v1.value0.value1, v1.value0.value2));
+                              };
+                              if (v1.value0 instanceof TwoRight) {
+                                  __tco_done = true;
+                                  return fromZipper(dictOrd)(v1.value1)(new Three(v1.value0.value0, v1.value0.value1, v1.value0.value2, v2.value0, v2.value1, v2.value2, v2.value3));
+                              };
+                              if (v1.value0 instanceof ThreeLeft) {
+                                  __tco_v1 = v1.value1;
+                                  __copy_v2 = new KickUp(new Two(v2.value0, v2.value1, v2.value2, v2.value3), v1.value0.value0, v1.value0.value1, new Two(v1.value0.value2, v1.value0.value3, v1.value0.value4, v1.value0.value5));
+                                  return;
+                              };
+                              if (v1.value0 instanceof ThreeMiddle) {
+                                  __tco_v1 = v1.value1;
+                                  __copy_v2 = new KickUp(new Two(v1.value0.value0, v1.value0.value1, v1.value0.value2, v2.value0), v2.value1, v2.value2, new Two(v2.value3, v1.value0.value3, v1.value0.value4, v1.value0.value5));
+                                  return;
+                              };
+                              if (v1.value0 instanceof ThreeRight) {
+                                  __tco_v1 = v1.value1;
+                                  __copy_v2 = new KickUp(new Two(v1.value0.value0, v1.value0.value1, v1.value0.value2, v1.value0.value3), v1.value0.value4, v1.value0.value5, new Two(v2.value0, v2.value1, v2.value2, v2.value3));
+                                  return;
+                              };
+                              throw new Error("Failed pattern match at Data.Map line 307, column 5 - line 312, column 108: " + [ v1.value0.constructor.name, v2.constructor.name ]);
+                          };
+                          throw new Error("Failed pattern match at Data.Map line 305, column 3 - line 305, column 58: " + [ v1.constructor.name, v2.constructor.name ]);
+                      };
+                      while (!__tco_done) {
+                          __tco_result = __tco_loop(__tco_v1, __copy_v2);
+                      };
+                      return __tco_result;
+                  };
+              };
+              var comp = Data_Ord.compare(dictOrd);
+              var down = function (__copy_ctx) {
+                  return function (__copy_v1) {
+                      var __tco_ctx = __copy_ctx;
+                      var __tco_done = false;
+                      var __tco_result;
+                      function __tco_loop(ctx, v1) {
                           if (v1 instanceof Leaf) {
                               __tco_done = true;
                               return up(ctx)(new KickUp(Leaf.value, k, v, Leaf.value));
                           };
                           if (v1 instanceof Two) {
-                              var v3 = comp(k)(v1.value1);
-                              if (v3 instanceof Data_Ordering.EQ) {
+                              var v2 = comp(k)(v1.value1);
+                              if (v2 instanceof Data_Ordering.EQ) {
                                   __tco_done = true;
                                   return fromZipper(dictOrd)(ctx)(new Two(v1.value0, k, v, v1.value3));
                               };
-                              if (v3 instanceof Data_Ordering.LT) {
+                              if (v2 instanceof Data_Ordering.LT) {
                                   __tco_ctx = new Data_List_Types.Cons(new TwoLeft(v1.value1, v1.value2, v1.value3), ctx);
-                                  __tco_k = k;
-                                  __tco_v = v;
                                   __copy_v1 = v1.value0;
                                   return;
                               };
                               __tco_ctx = new Data_List_Types.Cons(new TwoRight(v1.value0, v1.value1, v1.value2), ctx);
-                              __tco_k = k;
-                              __tco_v = v;
                               __copy_v1 = v1.value3;
                               return;
                           };
@@ -3529,35 +3545,29 @@ var PS = {};
                               };
                               if (v3 instanceof Data_Ordering.LT) {
                                   __tco_ctx = new Data_List_Types.Cons(new ThreeLeft(v1.value1, v1.value2, v1.value3, v1.value4, v1.value5, v1.value6), ctx);
-                                  __tco_k = k;
-                                  __tco_v = v;
                                   __copy_v1 = v1.value0;
                                   return;
                               };
                               if (v3 instanceof Data_Ordering.GT && v4 instanceof Data_Ordering.LT) {
                                   __tco_ctx = new Data_List_Types.Cons(new ThreeMiddle(v1.value0, v1.value1, v1.value2, v1.value4, v1.value5, v1.value6), ctx);
-                                  __tco_k = k;
-                                  __tco_v = v;
                                   __copy_v1 = v1.value3;
                                   return;
                               };
                               __tco_ctx = new Data_List_Types.Cons(new ThreeRight(v1.value0, v1.value1, v1.value2, v1.value3, v1.value4, v1.value5), ctx);
-                              __tco_k = k;
-                              __tco_v = v;
                               __copy_v1 = v1.value6;
                               return;
                           };
-                          throw new Error("Failed pattern match at Data.Map line 264, column 3 - line 264, column 52: " + [ ctx.constructor.name, k.constructor.name, v.constructor.name, v1.constructor.name ]);
+                          throw new Error("Failed pattern match at Data.Map line 288, column 3 - line 288, column 48: " + [ ctx.constructor.name, v1.constructor.name ]);
                       };
                       while (!__tco_done) {
-                          __tco_result = __tco_loop(__tco_ctx, __tco_k, __tco_v, __copy_v1);
+                          __tco_result = __tco_loop(__tco_ctx, __copy_v1);
                       };
                       return __tco_result;
                   };
               };
+              return down(Data_List_Types.Nil.value);
           };
       };
-      return down(Data_List_Types.Nil.value);
   };
   var empty = Leaf.value;
   var fromFoldable = function (dictOrd) {
@@ -3579,6 +3589,7 @@ var PS = {};
   "use strict";
   var Data_Abc = PS["Data.Abc"];
   var Data_Abc_Accidentals = PS["Data.Abc.Accidentals"];
+  var Data_Abc_Canonical = PS["Data.Abc.Canonical"];
   var Data_Eq = PS["Data.Eq"];
   var Data_EuclideanRing = PS["Data.EuclideanRing"];
   var Data_Foldable = PS["Data.Foldable"];
@@ -3659,9 +3670,6 @@ var PS = {};
           return 1;
       };
       return 0;
-  };                                                                                                                                                                                                                                                               
-  var maccToAcc = function (macc) {
-      return Data_Maybe.fromMaybe(Data_Abc.Natural.value)(macc);
   };
   var lookUpScale = function (s) {
       return function (i) {
@@ -3771,7 +3779,7 @@ var PS = {};
           if (h instanceof Data_Abc.UnsupportedHeader) {
               return new Data_Tuple.Tuple("u", h);
           };
-          throw new Error("Failed pattern match at Data.Abc.Notation line 112, column 7 - line 201, column 22: " + [ h.constructor.name ]);
+          throw new Error("Failed pattern match at Data.Abc.Notation line 111, column 7 - line 200, column 22: " + [ h.constructor.name ]);
       };
       var annotatedHeaders = Data_Functor.map(Data_List_Types.functorList)(f)(Data_List.reverse(t.headers));
       return Data_Map.fromFoldable(Data_Ord.ordChar)(Data_List_Types.foldableList)(annotatedHeaders);
@@ -3839,6 +3847,38 @@ var PS = {};
       pitchClass: Data_Abc.B.value, 
       accidental: Data_Abc.Natural.value
   }, Data_List_Types.Nil.value))))))))))));
+  var normaliseModalKey = function (ks) {
+      var scale = (function () {
+          if (ks.accidental instanceof Data_Abc.Sharp) {
+              return sharpScale;
+          };
+          if (ks.accidental instanceof Data_Abc.Flat) {
+              return flatScale;
+          };
+          if (ks.pitchClass instanceof Data_Abc.F) {
+              return flatScale;
+          };
+          return sharpScale;
+      })();
+      var keyAccidental = {
+          pitchClass: ks.pitchClass, 
+          accidental: ks.accidental
+      };
+      var idx = Data_Maybe.fromMaybe(0)(Data_List.elemIndex(Data_Abc.eqKeyAccidental)(keyAccidental)(scale));
+      var distance = modalDistance(ks.mode);
+      var majorKeyIndex = (idx + distance | 0) % notesInChromaticScale;
+      var majorKeyAcc = lookUpScale(scale)(majorKeyIndex);
+      var targetAccidental = (Data_Newtype.unwrap(Data_Abc.newtypeKeyAccidental)(majorKeyAcc)).accidental;
+      var $63 = 0 === distance;
+      if ($63) {
+          return ks;
+      };
+      return {
+          pitchClass: (Data_Newtype.unwrap(Data_Abc.newtypeKeyAccidental)(majorKeyAcc)).pitchClass, 
+          accidental: targetAccidental, 
+          mode: Data_Abc.Major.value
+      };
+  };
   var dotFactor = function (i) {
       if (i === 1) {
           return Data_Rational.rational(1)(2);
@@ -3850,48 +3890,6 @@ var PS = {};
           return Data_Rational.rational(7)(8);
       };
       return Data_Rational.rational(0)(1);
-  };
-  var accToMacc = function (acc) {
-      if (acc instanceof Data_Abc.Sharp) {
-          return new Data_Maybe.Just(Data_Abc.Sharp.value);
-      };
-      if (acc instanceof Data_Abc.Flat) {
-          return new Data_Maybe.Just(Data_Abc.Flat.value);
-      };
-      return Data_Maybe.Nothing.value;
-  };
-  var normaliseModalKey = function (ks) {
-      var sourceAccidental = maccToAcc(ks.accidental);
-      var scale = (function () {
-          if (ks.accidental instanceof Data_Maybe.Just && ks.accidental.value0 instanceof Data_Abc.Sharp) {
-              return sharpScale;
-          };
-          if (ks.accidental instanceof Data_Maybe.Just && ks.accidental.value0 instanceof Data_Abc.Flat) {
-              return flatScale;
-          };
-          if (ks.pitchClass instanceof Data_Abc.F) {
-              return flatScale;
-          };
-          return sharpScale;
-      })();
-      var keyAccidental = {
-          pitchClass: ks.pitchClass, 
-          accidental: sourceAccidental
-      };
-      var idx = Data_Maybe.fromMaybe(0)(Data_List.elemIndex(Data_Abc.eqKeyAccidental)(keyAccidental)(scale));
-      var distance = modalDistance(ks.mode);
-      var majorKeyIndex = (idx + distance | 0) % notesInChromaticScale;
-      var majorKeyAcc = lookUpScale(scale)(majorKeyIndex);
-      var targetAccidental = accToMacc((Data_Newtype.unwrap(Data_Abc.newtypeKeyAccidental)(majorKeyAcc)).accidental);
-      var $125 = 0 === distance;
-      if ($125) {
-          return ks;
-      };
-      return {
-          pitchClass: (Data_Newtype.unwrap(Data_Abc.newtypeKeyAccidental)(majorKeyAcc)).pitchClass, 
-          accidental: targetAccidental, 
-          mode: Data_Abc.Major.value
-      };
   };
   exports["dotFactor"] = dotFactor;
   exports["getHeader"] = getHeader;
@@ -5001,6 +4999,11 @@ var PS = {};
           return buildTempoSignature(new Data_Maybe.Just(marking))(td);
       };
   };
+  var buildRest = function (r) {
+      return {
+          duration: r
+      };
+  };
   var buildRationalFromSlashList = function (xs) {
       var f = function (i) {
           return Data_Rational.rational(1)(Data_Int.pow(2)(i));
@@ -5196,7 +5199,6 @@ var PS = {};
   var degenerateTempo = Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildTempoSignature3)($$int);
   var integralAsRational = Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Rational.fromInt)($$int);
   var noteDur = Text_Parsing_StringParser_Combinators.choice(Data_Foldable.foldableArray)([ Text_Parsing_StringParser["try"](manySlashes), Text_Parsing_StringParser["try"](anyRat), integralAsRational ]);
-  var rest = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Rest.create)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Maybe.fromMaybe(Data_Rational.fromInt(1)))(Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(Text_Parsing_StringParser_String.regex("[XxZz]"))(Text_Parsing_StringParser_Combinators.optionMaybe(noteDur)))))("rest");
   var meterSignature = Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Maybe.Just.create)(Control_Apply.applyFirst(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.applyFirst(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Tuple.Tuple.create)($$int))(Text_Parsing_StringParser_String["char"]("/")))($$int))(whiteSpace));
   var meterDefinition = Text_Parsing_StringParser_Combinators.choice(Data_Foldable.foldableArray)([ cutTime, commonTime, meterSignature, nometer ]);
   var meter = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Meter.create)(Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(headerCode("M"))(meterDefinition)))("M header");
@@ -5219,7 +5221,7 @@ var PS = {};
   var annotation = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildAnnotation)(annotationString))("annotation");
   var aeolian = Control_Apply.applyFirst(Text_Parsing_StringParser.applyParser)(Data_Functor.voidRight(Text_Parsing_StringParser.functorParser)(Data_Abc.Aeolian.value)(whiteSpace))(Text_Parsing_StringParser_String.regex("[A|a][E|e][O|o][A-Za-z]*"));
   var mode = Text_Parsing_StringParser_Combinators.choice(Data_Foldable.foldableArray)([ Text_Parsing_StringParser["try"](major), ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, minor ]);
-  var keySignature = Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.applyFirst(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildKeySignature)(keyName))(Text_Parsing_StringParser_Combinators.optionMaybe(sharpOrFlat)))(whiteSpace))(Text_Parsing_StringParser_Combinators.optionMaybe(mode));
+  var keySignature = Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.applyFirst(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildKeySignature)(keyName))(Text_Parsing_StringParser_Combinators.option(Data_Abc.Natural.value)(sharpOrFlat)))(whiteSpace))(Text_Parsing_StringParser_Combinators.optionMaybe(mode));
   var accidental = Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildAccidental)(Text_Parsing_StringParser_Combinators.choice(Data_Foldable.foldableArray)([ Text_Parsing_StringParser_String.string("^^"), Text_Parsing_StringParser_String.string("__"), Text_Parsing_StringParser_String.string("^"), Text_Parsing_StringParser_String.string("_"), Text_Parsing_StringParser_String.string("=") ]));
   var keyAccidental = Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildKeyAccidental)(accidental))(pitch);
   var keyAccidentals = Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(whiteSpace)(Text_Parsing_StringParser_Combinators.sepBy(keyAccidental)(space));
@@ -5241,12 +5243,15 @@ var PS = {};
   var acciaccatura = Data_Functor.map(Text_Parsing_StringParser.functorParser)(function (v) {
       return true;
   })(Text_Parsing_StringParser_Combinators.optionMaybe(Text_Parsing_StringParser_String["char"]("/")));
+  var abcRest = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildRest)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Maybe.fromMaybe(Data_Rational.fromInt(1)))(Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(Text_Parsing_StringParser_String.regex("[XxZz]"))(Text_Parsing_StringParser_Combinators.optionMaybe(noteDur)))))("abcRest");
+  var rest = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Rest.create)(abcRest))("rest");
   var abcNote = Text_Parsing_StringParser_Combinators.withError(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildNote)(maybeAccidental))(pitch))(moveOctave))(Text_Parsing_StringParser_Combinators.optionMaybe(noteDur)))(maybeTie))("ABC note");
   var brokenRhythmPair = Text_Parsing_StringParser_Combinators.withError(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.BrokenRhythmPair.create)(abcNote))(brokenRhythmTie))(abcNote))("broken rhythm pair");
   var grace = Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.GraceNote.create)(acciaccatura))(Text_Parsing_StringParser_Combinators.many1(abcNote));
   var graceNote = Text_Parsing_StringParser_Combinators.withError(Text_Parsing_StringParser_Combinators.between(Text_Parsing_StringParser_String["char"]("{"))(Text_Parsing_StringParser_String["char"]("}"))(grace))("grace note");
   var note = Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Note.create)(abcNote);
-  var tuplet = Text_Parsing_StringParser_Combinators.withError(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Tuplet.create)(Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(Text_Parsing_StringParser_String["char"]("("))(tupletSignature)))(Text_Parsing_StringParser_Combinators.many1(abcNote)))("tuplet");
+  var restOrNote = Control_Alt.alt(Text_Parsing_StringParser.altParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Either.Left.create)(abcRest))(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Either.Right.create)(abcNote));
+  var tuplet = Text_Parsing_StringParser_Combinators.withError(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Tuplet.create)(Control_Apply.applySecond(Text_Parsing_StringParser.applyParser)(Text_Parsing_StringParser_String["char"]("("))(tupletSignature)))(Text_Parsing_StringParser_Combinators.many1(restOrNote)))("tuplet");
   var abcChord = Text_Parsing_StringParser_Combinators.withError(Control_Apply.apply(Text_Parsing_StringParser.applyParser)(Data_Functor.map(Text_Parsing_StringParser.functorParser)(buildChord)(Text_Parsing_StringParser_Combinators.between(Text_Parsing_StringParser_String["char"]("["))(Text_Parsing_StringParser_String["char"]("]"))(Text_Parsing_StringParser_Combinators.many1(abcNote))))(Text_Parsing_StringParser_Combinators.optionMaybe(noteDur)))("ABC chord");
   var chord = Text_Parsing_StringParser_Combinators.withError(Data_Functor.map(Text_Parsing_StringParser.functorParser)(Data_Abc.Chord.create)(abcChord))("chord");
   var scoreItem = Text_Parsing_StringParser_Combinators.withError(Text_Parsing_StringParser_Combinators.choice(Data_Foldable.foldableArray)([ Text_Parsing_StringParser["try"](chord), Text_Parsing_StringParser["try"](inline), continuation, ignore, spacer, decoration, chordSymbol, annotation, graceNote, Text_Parsing_StringParser["try"](tuplet), slur, rest, Text_Parsing_StringParser["try"](brokenRhythmPair), note, barline ]))("score item");
@@ -5261,7 +5266,7 @@ var PS = {};
       if (v instanceof Data_Either.Left) {
           return new Data_Either.Left(v.value0);
       };
-      throw new Error("Failed pattern match at Data.Abc.Parser line 1381, column 5 - line 1386, column 19: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at Data.Abc.Parser line 1395, column 5 - line 1400, column 19: " + [ v.constructor.name ]);
   };
   exports["parse"] = parse;
 })(PS["Data.Abc.Parser"] = PS["Data.Abc.Parser"] || {});
@@ -5269,6 +5274,7 @@ var PS = {};
   // Generated by purs version 0.11.4
   "use strict";
   var Data_Abc = PS["Data.Abc"];
+  var Data_Either = PS["Data.Either"];
   var Data_List = PS["Data.List"];
   var Data_Maybe = PS["Data.Maybe"];
   var Data_Show = PS["Data.Show"];
@@ -5511,7 +5517,7 @@ var PS = {};
       if (v instanceof SixtyFourthDotted) {
           return ":64d";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.VexScore line 73, column 3 - line 74, column 3: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.VexScore line 74, column 3 - line 75, column 3: " + [ v.constructor.name ]);
   });
   var showClef = new Data_Show.Show(function (v) {
       if (v instanceof Treble) {
@@ -5520,7 +5526,7 @@ var PS = {};
       if (v instanceof Bass) {
           return "bass";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.VexScore line 53, column 4 - line 54, column 4: " + [ v.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.VexScore line 54, column 4 - line 55, column 4: " + [ v.constructor.name ]);
   });
   exports["Treble"] = Treble;
   exports["Bass"] = Bass;
@@ -5554,6 +5560,7 @@ var PS = {};
   // Generated by purs version 0.11.4
   "use strict";
   var Data_Abc = PS["Data.Abc"];
+  var Data_Either = PS["Data.Either"];
   var Data_Foldable = PS["Data.Foldable"];
   var Data_Function = PS["Data.Function"];
   var Data_Functor = PS["Data.Functor"];
@@ -5640,11 +5647,15 @@ var PS = {};
           };
           return " =||";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 202, column 3 - line 220, column 1: " + [ b.repeat.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 228, column 3 - line 246, column 1: " + [ b.repeat.constructor.name ]);
   };
   var options = "options beam-rests=false\x0d\x0a";
   var nicelySpace = function (xs) {
       return Data_Foldable.intercalate(Data_Foldable.foldableArray)(Data_Monoid.monoidString)(" ")(xs);
+  };
+  var vexRest = function (r) {
+      var dur = Data_Show.show(VexTab_Abc_VexScore.showVexDuration)(r.duration);
+      return nicelySpace([ "", dur, "##" ]);
   };
   var mode = function (m) {
       if (m instanceof Data_Abc.Major) {
@@ -5661,11 +5672,11 @@ var PS = {};
       };
       return "error not supported";
   };
-  var headerAccidental = function (ma) {
-      if (ma instanceof Data_Maybe.Just && ma.value0 instanceof Data_Abc.Sharp) {
+  var headerAccidental = function (a) {
+      if (a instanceof Data_Abc.Sharp) {
           return "#";
       };
-      if (ma instanceof Data_Maybe.Just && ma.value0 instanceof Data_Abc.Flat) {
+      if (a instanceof Data_Abc.Flat) {
           return "b";
       };
       return "";
@@ -5693,7 +5704,7 @@ var PS = {};
       if (mvs instanceof Data_Maybe.Nothing) {
           return " notes";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 65, column 3 - line 95, column 1: " + [ mvs.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 66, column 3 - line 96, column 1: " + [ mvs.constructor.name ]);
   };
   var accidental = function (a) {
       if (a instanceof Data_Abc.Sharp) {
@@ -5711,7 +5722,7 @@ var PS = {};
       if (a instanceof Data_Abc.Natural) {
           return "n";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 184, column 3 - line 200, column 1: " + [ a.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 210, column 3 - line 226, column 1: " + [ a.constructor.name ]);
   };
   var vexNote = function (ctx) {
       return function (vnote) {
@@ -5737,6 +5748,15 @@ var PS = {};
           return nicelySpace([ "", dur, pitch ]) + decor;
       };
   };
+  var vexRestOrNote = function (vrn) {
+      if (vrn instanceof Data_Either.Left) {
+          return vexRest(vrn.value0);
+      };
+      if (vrn instanceof Data_Either.Right) {
+          return vexNote(Tupleted.value)(vrn.value0);
+      };
+      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 201, column 3 - line 205, column 25: " + [ vrn.constructor.name ]);
+  };
   var vexItem = function (vi) {
       if (vi instanceof VexTab_Abc_VexScore.VBar) {
           return vexBar(vi.value0);
@@ -5745,11 +5765,10 @@ var PS = {};
           return vexNote(Staved.value)(vi.value0);
       };
       if (vi instanceof VexTab_Abc_VexScore.VRest) {
-          var dur = Data_Show.show(VexTab_Abc_VexScore.showVexDuration)(vi.value0);
-          return nicelySpace([ "", dur, "##" ]);
+          return vexRest(vi.value0);
       };
       if (vi instanceof VexTab_Abc_VexScore.VTuplet) {
-          return " " + (Data_Foldable.intercalate(Data_List_Types.foldableList)(Data_Monoid.monoidString)(" ")(Data_Functor.map(Data_List_Types.functorList)(vexNote(Tupleted.value))(vi.value1)) + (" ^" + (Data_Show.show(Data_Show.showInt)(vi.value0) + ("," + (Data_Show.show(Data_Show.showInt)(Data_List.length(vi.value1)) + "^")))));
+          return " " + (Data_Foldable.intercalate(Data_List_Types.foldableList)(Data_Monoid.monoidString)(" ")(Data_Functor.map(Data_List_Types.functorList)(vexRestOrNote)(vi.value1)) + (" ^" + (Data_Show.show(Data_Show.showInt)(vi.value0) + ("," + (Data_Show.show(Data_Show.showInt)(Data_List.length(vi.value1)) + "^")))));
       };
       if (vi instanceof VexTab_Abc_VexScore.VChord) {
           var chordDur = Data_Show.show(VexTab_Abc_VexScore.showVexDuration)(vi.value0);
@@ -5761,7 +5780,7 @@ var PS = {};
       if (vi instanceof VexTab_Abc_VexScore.VIgnore) {
           return "";
       };
-      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 101, column 3 - line 145, column 1: " + [ vi.constructor.name ]);
+      throw new Error("Failed pattern match at VexTab.Abc.Canonical line 102, column 3 - line 150, column 1: " + [ vi.constructor.name ]);
   };
   var vexItems = function (vis) {
       return Data_Foldable.foldMap(Data_List_Types.foldableList)(Data_Monoid.monoidString)(vexItem)(vis);
@@ -5854,35 +5873,74 @@ var PS = {};
           return new Data_Either.Left("too long or too dotted");
       };
   };
+  var rest = function (ctx) {
+      return function (abcRest) {
+          var v = noteDur(ctx)(abcRest.duration);
+          if (v instanceof Data_Either.Right) {
+              return new Data_Either.Right(new Data_Tuple.Tuple({
+                  duration: v.value0
+              }, ctx));
+          };
+          if (v instanceof Data_Either.Left) {
+              return new Data_Either.Left("Rest " + (v.value0 + (": " + "rest")));
+          };
+          throw new Error("Failed pattern match at VexTab.Abc.Translate line 228, column 3 - line 233, column 46: " + [ v.constructor.name ]);
+      };
+  };
   var note = function (ctx) {
       return function (abcNote) {
-          var noteDurResult = noteDur(ctx)(abcNote.duration);
-          if (noteDurResult instanceof Data_Either.Right) {
+          var v = noteDur(ctx)(abcNote.duration);
+          if (v instanceof Data_Either.Right) {
               var vexNote = {
                   pitchClass: abcNote.pitchClass, 
                   accidental: abcNote.accidental, 
                   octave: abcNote.octave - 1 | 0, 
-                  duration: noteDurResult.value0, 
+                  duration: v.value0, 
                   tied: ctx.tied, 
                   decoration: ctx.decoration
               };
               var newCtx = (function () {
-                  var $21 = {};
-                  for (var $22 in ctx) {
-                      if ({}.hasOwnProperty.call(ctx, $22)) {
-                          $21[$22] = ctx[$22];
+                  var $29 = {};
+                  for (var $30 in ctx) {
+                      if ({}.hasOwnProperty.call(ctx, $30)) {
+                          $29[$30] = ctx[$30];
                       };
                   };
-                  $21.tied = abcNote.tied;
-                  $21.decoration = Data_Maybe.Nothing.value;
-                  return $21;
+                  $29.tied = abcNote.tied;
+                  $29.decoration = Data_Maybe.Nothing.value;
+                  return $29;
               })();
               return new Data_Either.Right(new Data_Tuple.Tuple(vexNote, newCtx));
           };
-          if (noteDurResult instanceof Data_Either.Left) {
-              return new Data_Either.Left("Note " + (noteDurResult.value0 + (": " + Data_Abc_Canonical.abcNote(abcNote))));
+          if (v instanceof Data_Either.Left) {
+              return new Data_Either.Left("Note " + (v.value0 + (": " + Data_Abc_Canonical.abcNote(abcNote))));
           };
-          throw new Error("Failed pattern match at VexTab.Abc.Translate line 242, column 5 - line 268, column 65: " + [ noteDurResult.constructor.name ]);
+          throw new Error("Failed pattern match at VexTab.Abc.Translate line 237, column 3 - line 263, column 65: " + [ v.constructor.name ]);
+      };
+  };
+  var restOrNote = function (ctx) {
+      return function (rn) {
+          if (rn instanceof Data_Either.Left) {
+              var v = rest(ctx)(rn.value0);
+              if (v instanceof Data_Either.Left) {
+                  return new Data_Either.Left(v.value0);
+              };
+              if (v instanceof Data_Either.Right) {
+                  return new Data_Either.Right(new Data_Tuple.Tuple(new Data_Either.Left(v.value0.value0), v.value0.value1));
+              };
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 271, column 7 - line 273, column 68: " + [ v.constructor.name ]);
+          };
+          if (rn instanceof Data_Either.Right) {
+              var v = note(ctx)(rn.value0);
+              if (v instanceof Data_Either.Left) {
+                  return new Data_Either.Left(v.value0);
+              };
+              if (v instanceof Data_Either.Right) {
+                  return new Data_Either.Right(new Data_Tuple.Tuple(new Data_Either.Right(v.value0.value0), v.value0.value1));
+              };
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 275, column 7 - line 277, column 69: " + [ v.constructor.name ]);
+          };
+          throw new Error("Failed pattern match at VexTab.Abc.Translate line 269, column 3 - line 277, column 69: " + [ rn.constructor.name ]);
       };
   };
   var normaliseMode = function (ks) {
@@ -5908,51 +5966,51 @@ var PS = {};
               };
               if (broken instanceof Data_Abc.LeftArrow) {
                   var right = (function () {
-                      var $28 = {};
-                      for (var $29 in n2) {
-                          if ({}.hasOwnProperty.call(n2, $29)) {
-                              $28[$29] = n2[$29];
+                      var $49 = {};
+                      for (var $50 in n2) {
+                          if ({}.hasOwnProperty.call(n2, $50)) {
+                              $49[$50] = n2[$50];
                           };
                       };
-                      $28.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n2.duration)(up(broken.value0));
-                      return $28;
+                      $49.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n2.duration)(up(broken.value0));
+                      return $49;
                   })();
                   var left = (function () {
-                      var $31 = {};
-                      for (var $32 in n1) {
-                          if ({}.hasOwnProperty.call(n1, $32)) {
-                              $31[$32] = n1[$32];
+                      var $52 = {};
+                      for (var $53 in n1) {
+                          if ({}.hasOwnProperty.call(n1, $53)) {
+                              $52[$53] = n1[$53];
                           };
                       };
-                      $31.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n1.duration)(down(broken.value0));
-                      return $31;
+                      $52.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n1.duration)(down(broken.value0));
+                      return $52;
                   })();
                   return new Data_Tuple.Tuple(left, right);
               };
               if (broken instanceof Data_Abc.RightArrow) {
                   var right = (function () {
-                      var $35 = {};
-                      for (var $36 in n2) {
-                          if ({}.hasOwnProperty.call(n2, $36)) {
-                              $35[$36] = n2[$36];
+                      var $56 = {};
+                      for (var $57 in n2) {
+                          if ({}.hasOwnProperty.call(n2, $57)) {
+                              $56[$57] = n2[$57];
                           };
                       };
-                      $35.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n2.duration)(down(broken.value0));
-                      return $35;
+                      $56.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n2.duration)(down(broken.value0));
+                      return $56;
                   })();
                   var left = (function () {
-                      var $38 = {};
-                      for (var $39 in n1) {
-                          if ({}.hasOwnProperty.call(n1, $39)) {
-                              $38[$39] = n1[$39];
+                      var $59 = {};
+                      for (var $60 in n1) {
+                          if ({}.hasOwnProperty.call(n1, $60)) {
+                              $59[$60] = n1[$60];
                           };
                       };
-                      $38.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n1.duration)(up(broken.value0));
-                      return $38;
+                      $59.duration = Data_Semiring.mul(Data_Rational.semiringRational)(n1.duration)(up(broken.value0));
+                      return $59;
                   })();
                   return new Data_Tuple.Tuple(left, right);
               };
-              throw new Error("Failed pattern match at VexTab.Abc.Translate line 342, column 5 - line 361, column 30: " + [ broken.constructor.name ]);
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 349, column 5 - line 368, column 30: " + [ broken.constructor.name ]);
           };
       };
   };
@@ -5966,14 +6024,14 @@ var PS = {};
           };
           if (h instanceof Data_Abc.UnitNoteLength) {
               return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VIgnore.value, (function () {
-                  var $45 = {};
-                  for (var $46 in ctx) {
-                      if ({}.hasOwnProperty.call(ctx, $46)) {
-                          $45[$46] = ctx[$46];
+                  var $66 = {};
+                  for (var $67 in ctx) {
+                      if ({}.hasOwnProperty.call(ctx, $67)) {
+                          $66[$67] = ctx[$67];
                       };
                   };
-                  $45.unitNoteLength = h.value0;
-                  return $45;
+                  $66.unitNoteLength = h.value0;
+                  return $66;
               })()));
           };
           return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VIgnore.value, ctx));
@@ -5985,7 +6043,7 @@ var PS = {};
       var keySig = Data_Maybe.fromMaybe({
           keySignature: {
               pitchClass: Data_Abc.C.value, 
-              accidental: Data_Maybe.Nothing.value, 
+              accidental: Data_Abc.Natural.value, 
               mode: Data_Abc.Major.value
           }, 
           modifications: Data_List_Types.Nil.value
@@ -6002,34 +6060,34 @@ var PS = {};
   var header = function (ctx) {
       return function (h) {
           if (h instanceof Data_Abc.Key) {
-              var $50 = {};
-              for (var $51 in ctx) {
-                  if ({}.hasOwnProperty.call(ctx, $51)) {
-                      $50[$51] = ctx[$51];
+              var $71 = {};
+              for (var $72 in ctx) {
+                  if ({}.hasOwnProperty.call(ctx, $72)) {
+                      $71[$72] = ctx[$72];
                   };
               };
-              $50.modifiedKeySig = h.value0;
-              return $50;
+              $71.modifiedKeySig = h.value0;
+              return $71;
           };
           if (h instanceof Data_Abc.UnitNoteLength) {
-              var $54 = {};
-              for (var $55 in ctx) {
-                  if ({}.hasOwnProperty.call(ctx, $55)) {
-                      $54[$55] = ctx[$55];
+              var $75 = {};
+              for (var $76 in ctx) {
+                  if ({}.hasOwnProperty.call(ctx, $76)) {
+                      $75[$76] = ctx[$76];
                   };
               };
-              $54.unitNoteLength = h.value0;
-              return $54;
+              $75.unitNoteLength = h.value0;
+              return $75;
           };
           if (h instanceof Data_Abc.Meter) {
-              var $58 = {};
-              for (var $59 in ctx) {
-                  if ({}.hasOwnProperty.call(ctx, $59)) {
-                      $58[$59] = ctx[$59];
+              var $79 = {};
+              for (var $80 in ctx) {
+                  if ({}.hasOwnProperty.call(ctx, $80)) {
+                      $79[$80] = ctx[$80];
                   };
               };
-              $58.meter = h.value0;
-              return $58;
+              $79.meter = h.value0;
+              return $79;
           };
           return ctx;
       };
@@ -6050,7 +6108,7 @@ var PS = {};
                       if (v.value0 instanceof Data_Either.Left) {
                           return new Data_Either.Left(v.value0.value0);
                       };
-                      throw new Error("Failed pattern match at VexTab.Abc.Translate line 448, column 7 - line 460, column 20: " + [ v.constructor.name ]);
+                      throw new Error("Failed pattern match at VexTab.Abc.Translate line 459, column 7 - line 471, column 20: " + [ v.constructor.name ]);
                   };
               };
               var f = function (acc) {
@@ -6077,34 +6135,39 @@ var PS = {};
           return foldOverResult(ctx)(notes)(note);
       };
   };
-  var firstNoteDuration = function ($173) {
+  var restOrNoteList = function (ctx) {
+      return function (restOrNotes) {
+          return foldOverResult(ctx)(restOrNotes)(restOrNote);
+      };
+  };
+  var firstNoteDuration = function ($194) {
       return Data_Maybe.fromMaybe(Data_Rational.rational(1)(1))(Data_List.head(Data_Functor.map(Data_List_Types.functorList)(function (v) {
           return v.duration;
-      })($173)));
+      })($194)));
   };
   var music = function (ctx) {
       return function (m) {
           if (m instanceof Data_Abc.Barline) {
               var newCtx = (function () {
                   if (m.value0.iteration instanceof Data_Maybe.Just && m.value0.iteration.value0 === 1) {
-                      var $83 = {};
-                      for (var $84 in ctx) {
-                          if ({}.hasOwnProperty.call(ctx, $84)) {
-                              $83[$84] = ctx[$84];
+                      var $104 = {};
+                      for (var $105 in ctx) {
+                          if ({}.hasOwnProperty.call(ctx, $105)) {
+                              $104[$105] = ctx[$105];
                           };
                       };
-                      $83.decoration = new Data_Maybe.Just("1");
-                      return $83;
+                      $104.decoration = new Data_Maybe.Just("1");
+                      return $104;
                   };
                   if (m.value0.iteration instanceof Data_Maybe.Just && m.value0.iteration.value0 === 2) {
-                      var $87 = {};
-                      for (var $88 in ctx) {
-                          if ({}.hasOwnProperty.call(ctx, $88)) {
-                              $87[$88] = ctx[$88];
+                      var $108 = {};
+                      for (var $109 in ctx) {
+                          if ({}.hasOwnProperty.call(ctx, $109)) {
+                              $108[$109] = ctx[$109];
                           };
                       };
-                      $87.decoration = new Data_Maybe.Just("2");
-                      return $87;
+                      $108.decoration = new Data_Maybe.Just("2");
+                      return $108;
                   };
                   return ctx;
               })();
@@ -6116,24 +6179,19 @@ var PS = {};
               })(note(ctx)(m.value0));
           };
           if (m instanceof Data_Abc.Rest) {
-              var noteDurResult = noteDur(ctx)(m.value0);
-              if (noteDurResult instanceof Data_Either.Right) {
-                  return new Data_Either.Right(new Data_Tuple.Tuple(new VexTab_Abc_VexScore.VRest(noteDurResult.value0), ctx));
-              };
-              if (noteDurResult instanceof Data_Either.Left) {
-                  return new Data_Either.Left("Rest " + (noteDurResult.value0 + (": " + "rest")));
-              };
-              throw new Error("Failed pattern match at VexTab.Abc.Translate line 148, column 9 - line 153, column 52: " + [ noteDurResult.constructor.name ]);
+              return Data_Functor.map(Data_Either.functorEither)(function (v) {
+                  return new Data_Tuple.Tuple(new VexTab_Abc_VexScore.VRest(v.value0), v.value1);
+              })(rest(ctx)(m.value0));
           };
           if (m instanceof Data_Abc.Tuplet) {
-              var notesResult = noteList(ctx)(m.value1);
+              var notesResult = restOrNoteList(ctx)(m.value1);
               if (notesResult instanceof Data_Either.Right) {
                   return new Data_Either.Right(new Data_Tuple.Tuple(new VexTab_Abc_VexScore.VTuplet(m.value0.p, notesResult.value0.value0), ctx));
               };
               if (notesResult instanceof Data_Either.Left) {
                   return new Data_Either.Left(notesResult.value0);
               };
-              throw new Error("Failed pattern match at VexTab.Abc.Translate line 160, column 9 - line 165, column 19: " + [ notesResult.constructor.name ]);
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 151, column 9 - line 156, column 19: " + [ notesResult.constructor.name ]);
           };
           if (m instanceof Data_Abc.Chord) {
               var notesResult = noteList(ctx)(m.value0.notes);
@@ -6150,7 +6208,7 @@ var PS = {};
               if (v.value1 instanceof Data_Either.Left) {
                   return new Data_Either.Left("Chord " + (v.value1.value0 + (": " + Data_Abc_Canonical.abcChord(m.value0))));
               };
-              throw new Error("Failed pattern match at VexTab.Abc.Translate line 181, column 9 - line 189, column 74: " + [ v.constructor.name ]);
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 172, column 9 - line 180, column 74: " + [ v.constructor.name ]);
           };
           if (m instanceof Data_Abc.BrokenRhythmPair) {
               var brokenNotes = makeBroken(m.value1)(m.value0)(m.value2);
@@ -6172,18 +6230,18 @@ var PS = {};
               if (v.value1 instanceof Data_Either.Left) {
                   return new Data_Either.Left("Note " + (v.value1.value0 + (": " + Data_Abc_Canonical.abcNote(m.value2))));
               };
-              throw new Error("Failed pattern match at VexTab.Abc.Translate line 212, column 9 - line 220, column 72: " + [ v.constructor.name ]);
+              throw new Error("Failed pattern match at VexTab.Abc.Translate line 203, column 9 - line 211, column 72: " + [ v.constructor.name ]);
           };
           if (m instanceof Data_Abc.Decoration) {
               return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VIgnore.value, (function () {
-                  var $143 = {};
-                  for (var $144 in ctx) {
-                      if ({}.hasOwnProperty.call(ctx, $144)) {
-                          $143[$144] = ctx[$144];
+                  var $164 = {};
+                  for (var $165 in ctx) {
+                      if ({}.hasOwnProperty.call(ctx, $165)) {
+                          $164[$165] = ctx[$165];
                       };
                   };
-                  $143.decoration = new Data_Maybe.Just(m.value0);
-                  return $143;
+                  $164.decoration = new Data_Maybe.Just(m.value0);
+                  return $164;
               })()));
           };
           if (m instanceof Data_Abc.Inline) {
@@ -6191,14 +6249,14 @@ var PS = {};
           };
           if (m instanceof Data_Abc.Continuation) {
               return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VIgnore.value, (function () {
-                  var $148 = {};
-                  for (var $149 in ctx) {
-                      if ({}.hasOwnProperty.call(ctx, $149)) {
-                          $148[$149] = ctx[$149];
+                  var $169 = {};
+                  for (var $170 in ctx) {
+                      if ({}.hasOwnProperty.call(ctx, $170)) {
+                          $169[$170] = ctx[$170];
                       };
                   };
-                  $148.continuation = true;
-                  return $148;
+                  $169.continuation = true;
+                  return $169;
               })()));
           };
           return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VIgnore.value, ctx));
@@ -6212,15 +6270,15 @@ var PS = {};
   var vexLine = function (ctx) {
       return function (line) {
           var staveCtx = (function () {
-              var $151 = {};
-              for (var $152 in ctx) {
-                  if ({}.hasOwnProperty.call(ctx, $152)) {
-                      $151[$152] = ctx[$152];
+              var $172 = {};
+              for (var $173 in ctx) {
+                  if ({}.hasOwnProperty.call(ctx, $173)) {
+                      $172[$173] = ctx[$173];
                   };
               };
-              $151.meter = Data_Maybe.Nothing.value;
-              $151.continuation = false;
-              return $151;
+              $172.meter = Data_Maybe.Nothing.value;
+              $172.continuation = false;
+              return $172;
           })();
           var mKey = new Data_Maybe.Just(normaliseMode(ctx.modifiedKeySig.keySignature));
           var vexStave = (function () {
@@ -6264,8 +6322,8 @@ var PS = {};
   var bodyPart = function (ctx) {
       return function (bp) {
           if (bp instanceof Data_Abc.Score) {
-              var $163 = emptyLine(bp.value0);
-              if ($163) {
+              var $184 = emptyLine(bp.value0);
+              if ($184) {
                   return new Data_Either.Right(new Data_Tuple.Tuple(VexTab_Abc_VexScore.VEmptyLine.value, ctx));
               };
               return vexLine(ctx)(bp.value0);
@@ -6285,8 +6343,8 @@ var PS = {};
   var translate = function (t) {
       var ctx = initialContext(t);
       var result = tuneBody(ctx)(t.body);
-      var $166 = Data_List["null"](ctx.modifiedKeySig.modifications);
-      if ($166) {
+      var $187 = Data_List["null"](ctx.modifiedKeySig.modifications);
+      if ($187) {
           if (result instanceof Data_Either.Right) {
               return new Data_Either.Right(Data_Tuple.fst(result.value0));
           };
@@ -6332,14 +6390,14 @@ var PS = {};
       },
 
       init: function (config) {
-        console.log(config);
+        // console.log(config);
 
         // var VexTab = VexTabDiv;
         var Artist = VexTabDiv.Artist;
         var Renderer = Vex.Flow.Renderer;
         var vexDiv = $(config.canvasDivId)[0];
 
-        Artist.DEBUG = true;
+        Artist.DEBUG = false;
         VexTab.DEBUG = false;
 
         try {

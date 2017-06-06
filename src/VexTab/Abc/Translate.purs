@@ -51,23 +51,17 @@ translate t =
 --| translate ABC text to a VexTab Score representation
 translateText :: String -> Either String Score
 translateText s =
-  let
-    parseResult =
-      parse s
-  in
-    case parseResult of
-      Right tune ->
-        translate tune
+  case (parse s) of
+    Right tune ->
+      translate tune
 
-      Left (PositionedParseError ppe) ->
-        Left ("parse error: " <> (ppe.error))
-
+    Left (PositionedParseError ppe) ->
+      Left ("parse error: " <> (ppe.error))
 
 --  | translate the tune body
 tuneBody :: Context -> TuneBody -> Either String (Tuple Score Context)
 tuneBody ctx tb =
   foldOverResult ctx tb bodyPart
-
 
 bodyPart :: Context -> BodyPart -> Either String (Tuple VexBodyPart Context)
 bodyPart ctx bp =
@@ -262,7 +256,8 @@ note ctx abcNote =
       Left e ->
         Left ("Note " <> e <> ": " <> (AbcText.abcNote abcNote))
 
--- | tuplets can now contain rests as well as noted
+-- | tuplets can now contain rests as well as notes
+-- | which are represented by Either AbcRest AbcNote
 restOrNote :: Context -> RestOrNote -> Either String (Tuple VexRestOrNote Context )
 restOrNote ctx rn =
   -- bimap (rest ctx rn) (note ctx rn)
@@ -329,7 +324,6 @@ noteDur ctx d =
 
       _ ->
         Left "too long or too dotted"
-
 
 
 {- apply the specified broken rhythm to each note in the note pair (presented individually)
@@ -496,7 +490,6 @@ foldOverResult ctx aline fmus =
 
         _ ->
           result
-
 
 normaliseMode :: KeySignature -> KeySignature
 normaliseMode ks =

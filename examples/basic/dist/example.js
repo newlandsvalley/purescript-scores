@@ -81,14 +81,14 @@ var PS = {};
       },
 
       init: function (config) {
-        console.log(config);
+        // console.log(config);
 
         // var VexTab = VexTabDiv;
         var Artist = VexTabDiv.Artist;
         var Renderer = Vex.Flow.Renderer;
         var vexDiv = $(config.canvasDivId)[0];
 
-        Artist.DEBUG = true;
+        Artist.DEBUG = false;
         VexTab.DEBUG = false;
 
         try {
