@@ -7,7 +7,7 @@ import Data.Either (Either(..))
 import Data.Tuple (Tuple(..), fst, snd)
 import Data.List (List(..), all, head, null, reverse, (:))
 import Data.Foldable (foldl)
-import Data.Rational (rational, fromInt, toNumber)
+import Data.Rational (fromInt, toNumber, (%))
 import Data.Int (round)
 import Data.Abc
 import Data.Abc.Canonical as AbcText
@@ -334,11 +334,11 @@ makeBroken broken n1 n2 =
   let
     down i =
       -- Ratio.add (rational 1 1) (Ratio.negate (dotFactor i))
-      (rational 1 1) - (dotFactor i)
+      (fromInt 1) - (dotFactor i)
 
     up i =
       -- Ratio.add (over 1 1) (dotFactor i)
-      (rational 1 1) + (dotFactor i)
+      (fromInt 1) + (dotFactor i)
   in
     case broken of
       LeftArrow i ->
@@ -422,7 +422,7 @@ initialContext t =
       getMeter t
 
     unl =
-      fromMaybe (rational 1 8) $ getUnitNoteLength t
+      fromMaybe (1 % 8) $ getUnitNoteLength t
   in
     { modifiedKeySig : keySig
     , meter : meter
@@ -435,7 +435,7 @@ initialContext t =
 {- get the duration of the first note in a sequence -}
 firstNoteDuration :: List AbcNote -> NoteDuration
 firstNoteDuration =
-   fromMaybe (rational 1 1) <<< head <<< map (_.duration)
+   fromMaybe (fromInt 1) <<< head <<< map (_.duration)
 
 -- Helper Functions
 {- This is a generic function that operates where we start with a list in ABC and need to end up with the
