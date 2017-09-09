@@ -29,7 +29,7 @@ sampleAbc =
   <> "A>c|: e2f2 efed | c2a2 e3d | cedc BdcB | Aced cBAc |\r\n"
   <> "e2f2 efed | c2a2 e3d | cedc BdcB | A4 A>AA>B :|\r\n"
   <> "|: e2e2 e2de | f2ed B3c | d3c d2cd | e3d cdBc |\r\n"
-  <> "A2a2 a2gf | e2f2 e3d | cedc BdcB |1 A4 A>AA>B :|2 A4 A4 |\r\n"
+  <> "A2a2 a2gf | e2f2 e3d | cedc BdcB |1 A4 A>AA>B :|2 [A4E4] [A4E4] |\r\n"
 
 main :: forall e. Eff (vt :: VEXTAB, console :: CONSOLE | e) Unit
 main = do

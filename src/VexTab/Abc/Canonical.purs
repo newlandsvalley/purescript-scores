@@ -126,7 +126,7 @@ vexItem vi =
         " "
           <> chordDur
           <> " ( "
-          <> (intercalate " " $ map (vexNote Chordal) vnotes)
+          <> (intercalate "." $ map (vexNote Chordal) vnotes)
           <> " )"
 
     VNotePair vnote1 vnote2 ->

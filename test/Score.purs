@@ -38,7 +38,10 @@ translateSuite =
         ((preface "C" ) <> " notes |  :8 ## :8 B/4 :8 C/5 ^3,3^ |\r\n" )
     test "chord" do
       assertCanonical "K:C\r\n| [def] |\r\n"
-        ((preface "C" ) <> " notes | :8 ( D/5 E/5 F/5 ) |\r\n" )
+        ((preface "C" ) <> " notes | :8 ( D/5.E/5.F/5 ) |\r\n" )
+    test "long chord" do
+      assertCanonical "K:C\r\n| [d4e4f4] |\r\n"
+        ((preface "C" ) <> " notes | :h ( D/5.E/5.F/5 ) |\r\n" )
     test "broken rhythm >" do
        assertCanonical "K:C\r\n| d>e |\r\n"
          ((preface "C" ) <> " notes | :8d D/5 :16 E/5 |\r\n" )
