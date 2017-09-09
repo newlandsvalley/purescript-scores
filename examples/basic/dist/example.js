@@ -130,7 +130,7 @@ var PS = {};
   var Data_Show = PS["Data.Show"];
   var Prelude = PS["Prelude"];
   var VexTab_Score = PS["VexTab.Score"];        
-  var sampleText = "stave \x0a" + ("notation=true \x0a" + ("key=G time=3/4 \x0a" + "notes :q A/4 B/4 :8 C/5 D/5 |  E/5 $.top.$ $1\u2500\u2500\u2500$ F/5  :q A/4 D/4 =:| :8 E/5 $.top.$ $2\u2500\u2500\u2500$ F/5 :h A/4 |\x0a"));
+  var sampleText = "stave \x0a" + ("notation=true \x0a" + ("key=G time=3/4 \x0a" + "notes :q A/4 B/4 :8 C/5 D/5 |  E/5 $.top.$ $1\u2500\u2500\u2500$ F/5  :q A/4 D/4 =:| :8 E/5 $.top.$ $2\u2500\u2500\u2500$ F/5 :h ( A/4.D/4 ) |\x0a"));
   var config = {
       canvasDivId: "#vextab", 
       canvasX: 10, 

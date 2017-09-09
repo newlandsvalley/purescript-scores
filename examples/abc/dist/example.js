@@ -5870,7 +5870,7 @@ var PS = {};
       };
       if (vi instanceof VexTab_Abc_VexScore.VChord) {
           var chordDur = Data_Show.show(VexTab_Abc_VexScore.showVexDuration)(vi.value0);
-          return " " + (chordDur + (" ( " + (Data_Foldable.intercalate(Data_List_Types.foldableList)(Data_Monoid.monoidString)(" ")(Data_Functor.map(Data_List_Types.functorList)(vexNote(Chordal.value))(vi.value1)) + " )")));
+          return " " + (chordDur + (" ( " + (Data_Foldable.intercalate(Data_List_Types.foldableList)(Data_Monoid.monoidString)(".")(Data_Functor.map(Data_List_Types.functorList)(vexNote(Chordal.value))(vi.value1)) + " )")));
       };
       if (vi instanceof VexTab_Abc_VexScore.VNotePair) {
           return vexNote(Staved.value)(vi.value0) + vexNote(Staved.value)(vi.value1);
