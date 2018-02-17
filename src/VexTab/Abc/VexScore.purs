@@ -88,7 +88,7 @@ instance showVexDuration :: Show VexDuration where
 -- | a note.
 type VexNote =
   { pitchClass :: PitchClass
-  , accidental :: Maybe Accidental
+  , accidental :: Accidental
   , octave :: Int
   , duration :: VexDuration
   , tied :: Boolean               -- to the next note

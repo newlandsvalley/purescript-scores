@@ -152,7 +152,7 @@ vexNote :: NoteContext -> VexNote -> String
 vexNote ctx vnote =
   let
     accident =
-      fromMaybe "" $ map accidental vnote.accidental
+      accidental vnote.accidental
 
     pitch =
       show vnote.pitchClass
@@ -210,6 +210,9 @@ accidental a =
 
     Natural ->
       "n"
+
+    Implicit ->
+      ""
 
 vexBar :: Bar -> String
 vexBar b =

@@ -2,7 +2,7 @@
   "name": "pux",
   "private": true,
   "dependencies": {
-    "purescript-scores": "../../../purescript-scores",
+    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#1.1.0",
     "purescript-pux": "^9.1.0"
   }
 }
