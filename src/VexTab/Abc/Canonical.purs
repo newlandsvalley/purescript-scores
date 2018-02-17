@@ -2,7 +2,7 @@ module VexTab.Abc.Canonical
   (toScoreText) where
 
 import Prelude (($), (<>), (>), map, show)
-import Data.Maybe (Maybe(..), fromMaybe)
+import Data.Maybe (Maybe(..))
 import Data.List (List, foldl, intercalate, length)
 import Data.Either (Either(..))
 import Data.Tuple (fst, snd)
