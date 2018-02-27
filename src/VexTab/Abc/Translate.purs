@@ -12,7 +12,8 @@ import Data.Int (round)
 import Data.Abc
 import Data.Abc.Canonical as AbcText
 import Data.Abc.Parser (parse, PositionedParseError(..))
-import Data.Abc.Notation (getKeySig, getMeter, getUnitNoteLength, dotFactor, normaliseModalKey)
+import Data.Abc.Metadata (getKeySig, getMeter, getUnitNoteLength, dotFactor)
+import Data.Abc.KeySignature (normaliseModalKey)
 import VexTab.Abc.VexScore (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote, VexRest, VexRestOrNote)
 
 type Context =
