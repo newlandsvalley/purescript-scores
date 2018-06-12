@@ -1,9 +1,9 @@
 module Main where
 
 import VexTab.Score
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log, logShow)
-import Prelude (Unit, bind, discard, (<>), ($))
+import Effect (Effect)
+import Effect.Console (log)
+import Prelude (Unit, bind, discard, show, (<>), ($))
 import VexTab.Abc.Score (renderParsedAbc)
 import Data.Abc.Parser (parse)
 
@@ -31,11 +31,11 @@ sampleAbc =
   <> "|: e2e2 e2de | f2ed B3c | d3c d2cd | e3d cdBc |\r\n"
   <> "A2a2 a2gf | e2f2 e3d | cedc BdcB |1 A4 A>AA>B :|2 [A4E4] [A4E4] |\r\n"
 
-main :: forall e. Eff (vt :: VEXTAB, console :: CONSOLE | e) Unit
+main :: Effect Unit
 main = do
   initialised <- initialise config
   log "initialised?"
-  logShow initialised
+  log $ show initialised
   log "rendered?"
   rendered <- renderParsedAbc $ parse sampleAbc
-  logShow rendered
+  log $ show rendered

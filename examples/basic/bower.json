@@ -1,8 +1,8 @@
 {
-  "name": "basic example",
+  "name": "basic-example",
   "private": true,
   "dependencies": {
-    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#1.1.1",
-    "purescript-console": "^3.0.0"
+    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#compiler/0.12",
+    "purescript-console": "^4.1.0"
   }
 }
