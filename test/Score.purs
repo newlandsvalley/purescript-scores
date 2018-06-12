@@ -11,7 +11,7 @@ import VexTab.Abc.Canonical (toScoreText)
 import Test.Unit (Test, TestF, suite, test, failure)
 import Test.Unit.Assert as Assert
 
-assertCanonical :: forall e. String -> String -> Test e
+assertCanonical :: String -> String -> Test
 assertCanonical s canonical =
   case (parse s) of
     Right tune ->
@@ -24,7 +24,7 @@ assertCanonical s canonical =
     Left err ->
       failure ("parse failed: " <> (show err))
 
-translateSuite :: forall t. Free (TestF t) Unit
+translateSuite :: Free TestF Unit
 translateSuite =
   suite "ABC translation" do
     test "notes" do

@@ -2,10 +2,12 @@ module VexTab.Abc.Translate
   (translate, translateText) where
 
 import Prelude (($), (+), (-), (*), (<>), (<<<), map)
-import Data.Maybe (Maybe(..), fromMaybe)
+import Partial.Unsafe (unsafePartial)
+import Data.Maybe (Maybe(..), fromMaybe, fromJust)
 import Data.Either (Either(..))
 import Data.Tuple (Tuple(..), fst, snd)
-import Data.List (List(..), all, head, null, reverse, (:))
+import Data.List (List(..), all, null, reverse, (:))
+import Data.List.NonEmpty (NonEmptyList, head, fromList, toList)
 import Data.Foldable (foldl)
 import Data.Rational (fromInt, toNumber, (%))
 import Data.Int (round)
@@ -363,13 +365,28 @@ makeBroken broken n1 n2 =
           (Tuple left right )
 
 
-noteList :: Context -> List AbcNote -> Either String (Tuple (List VexNote) Context )
-noteList ctx notes =
-  foldOverResult ctx notes note
+noteList :: Context -> NonEmptyList AbcNote -> Either String (Tuple (List VexNote) Context )
+noteList ctx notesNel =
+  let
+    notes = toList notesNel
+  in
+    foldOverResult ctx notes note
 
-restOrNoteList :: Context -> List RestOrNote -> Either String (Tuple (List VexRestOrNote) Context )
-restOrNoteList ctx restOrNotes =
-  foldOverResult ctx restOrNotes restOrNote
+restOrNoteList :: Context -> NonEmptyList RestOrNote -> Either String (Tuple (List VexRestOrNote) Context )
+restOrNoteList ctx restOrNotesNel =
+  let
+    restOrNotes = toList restOrNotesNel
+  in
+    foldOverResult ctx restOrNotes restOrNote
+
+-- an unsafe conversion from a List to a NonEmptyList
+-- use this when folding over NonEmptyLists and (for convenience)
+-- you want to use a normal List fold and convert at each end
+unsafeListToNel :: ∀ a. List a -> NonEmptyList a
+unsafeListToNel xs =
+  unsafePartial (go xs) where
+    go :: Partial => List a -> NonEmptyList a
+    go = fromJust <<< fromList
 
 {- cater for a new header inside the tune body after a line has completed
    we need to cater for changes in key signature, meter or unit note length
@@ -434,9 +451,9 @@ initialContext t =
     }
 
 {- get the duration of the first note in a sequence -}
-firstNoteDuration :: List AbcNote -> NoteDuration
+firstNoteDuration :: NonEmptyList AbcNote -> NoteDuration
 firstNoteDuration =
-   fromMaybe (fromInt 1) <<< head <<< map (_.duration)
+   head <<< map (_.duration)
 
 -- Helper Functions
 {- This is a generic function that operates where we start with a list in ABC and need to end up with the

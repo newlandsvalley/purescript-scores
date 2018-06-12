@@ -1,7 +1,7 @@
 module VexTab.Score
-  (Config, VEXTAB, initialise, render) where
+  (Config, initialise, render) where
 
-import Control.Monad.Eff (kind Effect, Eff)
+import Effect (Effect)
 
 -- | the configuration of the VexTab Canvas
 type Config =
@@ -12,9 +12,6 @@ type Config =
     , scale :: Number
     }
 
--- | VEXTAB Effect
-foreign import data VEXTAB :: Effect
+foreign import initialise :: Config -> Effect Boolean
 
-foreign import initialise :: forall eff. Config -> Eff (vt :: VEXTAB | eff) Boolean
-
-foreign import render :: forall eff. String -> Eff (vt :: VEXTAB | eff) Boolean
+foreign import render :: String -> Effect Boolean

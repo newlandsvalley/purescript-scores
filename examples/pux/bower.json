@@ -1,5 +1,5 @@
 {
-  "name": "pux",
+  "name": "pux example",
   "private": true,
   "dependencies": {
     "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#1.1.1",
