@@ -1,0 +1,16 @@
+{
+  "name": "halogen-example",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#compiler/0.12",
+    "purescript-halogen": "^4.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^4.0.0"
+  }
+}

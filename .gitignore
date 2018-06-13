@@ -5,5 +5,6 @@
 /examples/abc/dist/example.js
 /examples/basic/dist/example.js
 /examples/pux/dist/example.js
+/examples/halogen/dist/example.js
 /.psc*
 /.psa*
