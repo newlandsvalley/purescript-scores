@@ -13,9 +13,7 @@ import Halogen.HTML.Properties as HP
 import Halogen.HTML.Core (ClassName(..))
 import Effect.Class (class MonadEffect)
 import Effect.Aff (Aff)
-import Halogen (IProp)
 import VexTab.Score as VexScore
-
 
 data Query a =
     Initialise a
