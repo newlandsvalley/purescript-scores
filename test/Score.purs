@@ -60,6 +60,12 @@ translateSuite =
     test "tie" do
        assertCanonical "K:C\r\n| AB-B4 |\r\n"
           ((preface "C" ) <> " notes | :8 A/4 :8 B/4 :h T B/4 |\r\n" )
+    test "simple repeat" do
+       assertCanonical "K:C\r\n|: de :|\r\n"
+         ((preface "C" ) <> " notes =|: :8 D/5 :8 E/5 =:|\r\n" )
+    test "first and second repeat" do
+       assertCanonical "K:C\r\n|: de |1 fg :|2 ab |\r\n"
+         ((preface "C" ) <> " notes =|: :8 D/5 :8 E/5 | :8 F/5 $.top.$ $1───$ :8 G/5 =:| :8 A/5 $.top.$ $2───$ :8 B/5 |\r\n" )
     test "two lines" do
       assertCanonical "K:C\r\n| ABc |\r\n| def |\r\n"
          ((preface "C" )

@@ -9,7 +9,7 @@ import Data.Abc
         , MeterSignature
         , PitchClass
         , Accidental
-        , Bar
+        , BarType
         )
 
 -- | a VexTab representation of a score.
@@ -22,9 +22,15 @@ data VexBodyPart
   | VContextChange
   | VEmptyLine
 
--- | a line of VexTab itens (prefaced by an optional stave).
+-- | a list of VexTab bars (prefaced by an optional stave).
 type VexLine =
   { stave :: Maybe VexStave
+  , bars :: List VexBar
+  }
+
+-- | a bar within a line
+type VexBar =
+  { barType :: BarType
   , items :: List VexItem
   }
 
@@ -32,7 +38,6 @@ type VexLine =
 data VexItem
   = VNote VexNote
   | VRest VexRest
-  | VBar Bar
   | VTuplet Int (List VexRestOrNote)
   | VChord VexDuration (List VexNote)
   | VNotePair VexNote VexNote

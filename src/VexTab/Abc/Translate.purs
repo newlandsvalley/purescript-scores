@@ -16,7 +16,7 @@ import Data.Abc.Canonical as AbcText
 import Data.Abc.Parser (parse, PositionedParseError(..))
 import Data.Abc.Metadata (getKeySig, getMeter, getUnitNoteLength, dotFactor)
 import Data.Abc.KeySignature (normaliseModalKey)
-import VexTab.Abc.VexScore (Clef(..), Score, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote, VexRest, VexRestOrNote)
+import VexTab.Abc.VexScore (Clef(..), Score, VexBar, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote, VexRest, VexRestOrNote)
 
 type Context =
     { modifiedKeySig :: ModifiedKeySignature
@@ -69,11 +69,19 @@ tuneBody ctx tb =
 bodyPart :: Context -> BodyPart -> Either String (Tuple VexBodyPart Context)
 bodyPart ctx bp =
   case bp of
+
+    {-}
     Score musicline ->
       if emptyLine musicline then
         Right (Tuple VEmptyLine ctx )
       else
         vexLine ctx musicline
+    -}
+    Score bars ->
+      if null bars then
+        Right (Tuple VEmptyLine ctx )
+      else
+        vexBars ctx bars
 
     BodyInfo h ->
       let
@@ -82,13 +90,13 @@ bodyPart ctx bp =
       in
         Right (Tuple VContextChange newCtx )
 
-vexLine :: Context -> MusicLine -> Either String (Tuple VexBodyPart Context )
-vexLine ctx line =
+vexBars :: Context -> List Bar -> Either String (Tuple VexBodyPart Context )
+vexBars ctx bars =
   let
     mKey =
       Just (normaliseMode $ ctx.modifiedKeySig.keySignature)
 
-    vexStave =
+    vStave =
       if (ctx.continuation) then
         Nothing
       else
@@ -102,23 +110,55 @@ vexLine ctx line =
     staveCtx =
       ctx { meter = Nothing, continuation = false }
 
-    itemsRes =
-      musicLine staveCtx line
+    barsRes = foldOverResult ctx bars vexBar
   in
-    case itemsRes of
-      Right (Tuple items newCtx ) ->
-        Right (Tuple (VLine { stave : vexStave, items : items }) newCtx )
+    case barsRes of
+      Right (Tuple vbars newCtx ) ->
+        let
+          vLine =
+            { stave : vStave
+            , bars : vbars
+            }
+        in
+          Right (Tuple (VLine vLine) newCtx )
 
       Left e ->
         Left e
 
-musicLine :: Context -> MusicLine -> Either String (Tuple (List VexItem) Context )
-musicLine ctx ml =
+vexBar :: Context -> Bar -> Either String (Tuple VexBar Context)
+vexBar ctx bar =
+  let
+    ctx0 =
+      case bar.startLine.iteration of
+        Just 1 ->
+          ctx { decoration = Just "1" }
+
+        Just 2 ->
+          ctx { decoration = Just "2" }
+
+        _ ->
+          ctx
+    itemsRes = vexLine ctx0 bar.music
+  in
+    case itemsRes of
+      Right (Tuple items newCtx ) ->
+        let
+          vBar = { barType : bar.startLine
+                 , items : items}
+        in
+          Right (Tuple vBar  newCtx )
+
+      Left e ->
+        Left e
+
+vexLine :: Context -> MusicLine -> Either String (Tuple (List VexItem) Context )
+vexLine ctx ml =
   foldOverResult ctx ml music
 
 music :: Context -> Music -> Either String (Tuple VexItem Context )
 music ctx m =
   case m of
+    {-}
     Barline bar ->
       let
         newCtx =
@@ -133,6 +173,7 @@ music ctx m =
               ctx
       in
         Right (Tuple (VBar bar) newCtx )
+     -}
 
     Note abcNote ->
       map (\(Tuple vn c ) -> (Tuple (VNote vn) c )) (note ctx abcNote)

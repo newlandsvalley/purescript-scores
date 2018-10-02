@@ -10,7 +10,7 @@ import Data.Foldable (foldMap)
 import Data.Abc
         ( Accidental(..)
         , Mode(..)
-        , Bar
+        , BarType
         , Thickness(..)
         , Repeat(..)
         )
@@ -59,7 +59,16 @@ vexBodyPart bp =
 
 vexLine :: VexLine -> String
 vexLine vl =
-  vexStave vl.stave <> (vexItems vl.items) <> "\r\n"
+  vexStave vl.stave <> (vexBars vl.bars) <> "\r\n"
+
+vexBars :: List VexBar -> String
+vexBars bars =
+  foldMap vexBar bars
+
+vexBar :: VexBar -> String
+vexBar bar =
+  vexBarType bar.barType <>
+  vexItems bar.items
 
 vexStave :: Maybe VexStave -> String
 vexStave mvs =
@@ -100,8 +109,10 @@ vexItems vis =
 vexItem :: VexItem -> String
 vexItem vi =
   case vi of
+    {-}
     VBar bar ->
       vexBar bar
+    -}
 
     VNote vnote ->
       vexNote Staved vnote
@@ -214,8 +225,8 @@ accidental a =
     Implicit ->
       ""
 
-vexBar :: Bar -> String
-vexBar b =
+vexBarType :: BarType -> String
+vexBarType b =
   case b.repeat of
     Just Begin ->
       " =|:"
@@ -230,6 +241,9 @@ vexBar b =
       case b.thickness of
         Thin ->
           " |"
+
+        Invisible ->
+          ""
 
         _ ->
          " =||"
