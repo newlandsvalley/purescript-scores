@@ -70,13 +70,6 @@ bodyPart :: Context -> BodyPart -> Either String (Tuple VexBodyPart Context)
 bodyPart ctx bp =
   case bp of
 
-    {-}
-    Score musicline ->
-      if emptyLine musicline then
-        Right (Tuple VEmptyLine ctx )
-      else
-        vexLine ctx musicline
-    -}
     Score bars ->
       if null bars then
         Right (Tuple VEmptyLine ctx )
@@ -158,22 +151,6 @@ vexLine ctx ml =
 music :: Context -> Music -> Either String (Tuple VexItem Context )
 music ctx m =
   case m of
-    {-}
-    Barline bar ->
-      let
-        newCtx =
-          case bar.iteration of
-            Just 1 ->
-              ctx { decoration = Just "1" }
-
-            Just 2 ->
-              ctx { decoration = Just "2" }
-
-            _ ->
-              ctx
-      in
-        Right (Tuple (VBar bar) newCtx )
-     -}
 
     Note abcNote ->
       map (\(Tuple vn c ) -> (Tuple (VNote vn) c )) (note ctx abcNote)

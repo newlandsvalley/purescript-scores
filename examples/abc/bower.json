@@ -2,7 +2,7 @@
   "name": "abc-example",
   "private": true,
   "dependencies": {
-    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#1.2.0",
+    "purescript-scores": "https://github.com/newlandsvalley/purescript-scores.git#master",
     "purescript-console": "^4.1.0"
   }
 }

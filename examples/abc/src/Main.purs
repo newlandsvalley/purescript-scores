@@ -21,7 +21,7 @@ sampleAbc =
   "X:1\r\n"
   <> "T:Engelska efter Albert Augustsson\r\n"
   <> "N:From the playing of Albert Augustsson, Bohuslän county.\r\n"
-  <> "M:2/4\r\n"
+  <> "M:4/4\r\n"
   <> "R:Engelska\r\n"
   <> "S:Orust\r\n"
   <> "Z:John Watson 24/01/2015\r\n"
