@@ -1,8 +1,9 @@
 module VexTab.Abc.Score
   (renderTune, renderParsedAbc) where
 
-import Prelude (pure, bind, ($))
+import Prelude (not, pure, bind, (<>))
 import Effect (Effect)
+import Effect.Console (log)
 import Data.Either (Either(..))
 import Data.Abc (AbcTune)
 import VexTab.Score as VexScore
@@ -13,14 +14,22 @@ import VexTab.Abc.Canonical (toScoreText)
 renderTune :: AbcTune -> Effect Boolean
 renderTune tune =
   let
-    vexText = translate tune
+    vexScore = translate tune
   in
-    case vexText of
-      Right text ->
+    case vexScore of
+      Right score ->
         do
-          rendered <- VexScore.render $ toScoreText text
-          pure rendered
-      Left err ->
+          let
+            text = toScoreText score
+          rendered <- VexScore.render text
+          -- log the error if we can't translate the vex score
+          if (not rendered)
+            then do
+              _ <- log ("vex text in error: " <> text)
+              pure rendered
+            else
+              pure rendered
+      Left err -> do
         pure false
 
 -- | attempt to render parsed ABC (only if the parse was successful)
