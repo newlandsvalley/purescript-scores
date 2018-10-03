@@ -73,6 +73,9 @@ translateSuite =
            <> (stave "C")
            <> " notes | :8 D/5 :8 E/5 :8 F/5 |\r\n"
          )
+    test "empty final stave" do
+      assertCanonical "K:C\r\n| ABc |\r\n| \r\n"
+        ((preface "C" ) <> " notes | :8 A/4 :8 B/4 :8 C/5 |\r\n" )
     -- more to follow
 
 preface :: String -> String

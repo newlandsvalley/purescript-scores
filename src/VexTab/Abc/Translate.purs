@@ -1,21 +1,22 @@
 module VexTab.Abc.Translate
   (translate, translateText) where
 
-import Prelude (($), (+), (-), (*), (<>), (<<<), map)
-import Partial.Unsafe (unsafePartial)
-import Data.Maybe (Maybe(..), fromMaybe, fromJust)
-import Data.Either (Either(..))
-import Data.Tuple (Tuple(..), fst, snd)
-import Data.List (List(..), all, null, reverse, (:))
-import Data.List.NonEmpty (NonEmptyList, head, fromList, toList)
-import Data.Foldable (foldl)
-import Data.Rational (fromInt, toNumber, (%))
-import Data.Int (round)
 import Data.Abc
+
 import Data.Abc.Canonical as AbcText
-import Data.Abc.Parser (parse, PositionedParseError(..))
-import Data.Abc.Metadata (getKeySig, getMeter, getUnitNoteLength, dotFactor)
 import Data.Abc.KeySignature (normaliseModalKey)
+import Data.Abc.Metadata (getKeySig, getMeter, getUnitNoteLength, dotFactor)
+import Data.Abc.Parser (parse, PositionedParseError(..))
+import Data.Either (Either(..))
+import Data.Foldable (all, foldl)
+import Data.Int (round)
+import Data.List (List(..), null, reverse, (:))
+import Data.List.NonEmpty (NonEmptyList, head, fromList, toList)
+import Data.Maybe (Maybe(..), fromMaybe, fromJust)
+import Data.Rational (fromInt, toNumber, (%))
+import Data.Tuple (Tuple(..), fst, snd)
+import Partial.Unsafe (unsafePartial)
+import Prelude (map, ($), (*), (+), (-), (<<<), (<>), (||))
 import VexTab.Abc.VexScore (Clef(..), Score, VexBar, VexBodyPart(..), VexDuration(..), VexItem(..), VexNote, VexRest, VexRestOrNote)
 
 type Context =
@@ -71,7 +72,7 @@ bodyPart ctx bp =
   case bp of
 
     Score bars ->
-      if null bars then
+      if isEmptyStave bars then
         Right (Tuple VEmptyLine ctx )
       else
         vexBars ctx bars
@@ -542,9 +543,14 @@ normaliseMode ks =
     _ ->
       normaliseModalKey ks
 
-{- check if a line of music is effectively empty -}
-emptyLine :: MusicLine -> Boolean
-emptyLine mLine =
+-- check if a new stave's contents is effectively empty
+isEmptyStave :: List Bar -> Boolean
+isEmptyStave bars =
+  all isEmptyBar bars
+
+-- check if a line of music is effectively empty
+isEmptyBar :: Bar -> Boolean
+isEmptyBar bar =
   let
     f music' =
       case music' of
@@ -560,4 +566,4 @@ emptyLine mLine =
         _ ->
           false
   in
-    all f mLine
+    all f bar.music || null bar.music
