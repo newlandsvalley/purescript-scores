@@ -1,7 +1,7 @@
 purescript-scores
 =================
 
-__DEPRECATED__ in favour of purescript-vexflow.
+__DEPRECATED__ in favour of [purescript-abc-scores](https://github.com/newlandsvalley/purescript-abc-scores).
 
 This module provides support for [VexTab](http://www.vexflow.com/vextab/) which is a language for creating and editing musical scores. Vextab itself is an open-source [javascript project](https://github.com/0xfe/vextab) and is still in a pre-alpha stage.  The VexTab language itself compiles to [VexFlow](http://www.vexflow.com) which provides the underlying API.
 
